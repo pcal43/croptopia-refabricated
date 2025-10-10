@@ -42,7 +42,7 @@ public class Pie implements ItemLike {
     }
 
     public void registerItem(RegisterFunction<Item> register) {
-        this.item = register.register(CroptopiaMod.createIdentifier(name), () -> new Item(createGroup().food(createFood(PIE_10))));
+        this.item = register.register(CroptopiaMod.createIdentifier(name), id -> new Item(createGroup(id).food(createFood(PIE_10))));
     }
 
     public static List<Pie> copy() {

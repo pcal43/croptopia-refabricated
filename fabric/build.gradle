@@ -100,7 +100,12 @@ processResources {
         def modId = isDatagenBuild ? "croptopia" : "croptopia-fabric"
         expand "mod_version": rootProject.version, "mod_id": modId
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    }
+     }
+
+    //from(sourceSets.main.resources.srcDirs) {
+    //    include('**/data/croptopia/recipes/**')
+    //    expand "dependent": "c"
+    //}
 
 
     //from(sourceSets.main.resources.srcDirs) {
