@@ -653,8 +653,7 @@ public class CroptopiaRecipeProvider extends FabricRecipeProvider {
     }
 
     public static TagKey<Item> independentTag(String name) {
-        // Use 'c' namespace during data generation, placeholder replacement happens in build
+        // For Fabric, use the 'c' namespace directly instead of ${dependent} placeholder
         return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
     }
-
 }

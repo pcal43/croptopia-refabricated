@@ -309,18 +309,18 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
         TagKey<Item> forgeFriendlyTag = register(category + "/" + path);
         ResourceLocation independentEntry = independentTag(category + "/" + path);
         this.getOrCreateRawBuilder(forgeFriendlyTag).add(TagEntry.element(itemId));
-
         TagBuilder fabricGeneralTag = this.getOrCreateRawBuilder(register(name));
         fabricGeneralTag.add(TagEntry.element(itemId));
         fabricGeneralTag.add(TagEntry.tag(independentEntry));
         
-        // Add crops tag reference for all categories that are not already crops
-        if (addCropsReference && !category.equals("crops")) {
-            fabricGeneralTag.add(TagEntry.tag(independentTag("crops/" + path)));
-        }
+        // Note: ${dependent} references are not created during data generation due to validation
+        // They are added by the build system during processResources
 
-        // Note: We do NOT add entries to group tags here to prevent duplicates
-        // Group tags will be populated separately after all individual tags are created
+        // this is the group i.e vegetables.json encompassing all the vegetables in the mod. it should pull from zucchini.json and not vegetables/zucchini.json
+        TagBuilder group = this.getOrCreateRawBuilder(register(category));
+        // we need a new independentEntry
+        ResourceLocation entryForGroup = independentTag(name);
+        group.add(TagEntry.tag(entryForGroup));
     }
     
     private void createMultiCategoryTag(TreeCrop crop, String name, Item item) {
@@ -366,6 +366,7 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
         
         // Note: We do NOT add entries to group tags here to prevent duplicates
         // Group tags will be populated separately after all individual tags are created
+
     }
 
     private void createGeneralTag(String name, Item item) {
@@ -403,7 +404,7 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
     }
 
     private ResourceLocation independentTag(String name) {
-        // Use 'c' namespace during data generation, placeholder replacement happens in build
+        // For Fabric, use the 'c' namespace directly instead of ${dependent} placeholder
         return ResourceLocation.fromNamespaceAndPath("c", name);
     }
     
