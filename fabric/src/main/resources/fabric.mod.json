@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "croptopia-fabric",
+  "id": "${mod_id}",
   "version": "${mod_version}",
   "name": "Croptopia-Fabric",
   "description": "Adds crops to the game",
