@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:yam_seed",
-    "#${dependent}:seeds/yam"
-  ]
-}

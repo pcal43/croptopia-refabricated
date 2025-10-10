@@ -4,9 +4,9 @@ import com.epherical.croptopia.ClientFunctions;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.world.level.block.Block;
 
 
@@ -21,6 +21,6 @@ public class CroptopiaClient implements ClientModInitializer {
     }
 
     public void registerCropBlockLayer(Block block) {
-        BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutoutMipped());
+        BlockRenderLayerMap.putBlock(block, ChunkSectionLayer.CUTOUT_MIPPED);
     }
 }

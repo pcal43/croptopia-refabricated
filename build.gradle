@@ -42,15 +42,6 @@ dependencies {
     compileOnlyApi files("jars/${epherolib_jar}")
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    "src/main/generated"
-            ]
-        }
-    }
-}
 
 task sourceJar(type: Jar) {
     archiveClassifier = 'sources'

@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:blueberry_seed",
-    "#${dependent}:seeds/blueberry"
-  ]
-}

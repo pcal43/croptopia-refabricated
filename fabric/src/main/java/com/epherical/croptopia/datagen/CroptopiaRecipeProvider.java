@@ -653,9 +653,8 @@ public class CroptopiaRecipeProvider extends FabricRecipeProvider {
     }
 
     public static TagKey<Item> independentTag(String name) {
-        IdentifierAccessor accessor = (IdentifierAccessor) Croptopia.createIdentifier(name);
-        accessor.setNamespace("c"); // lmao
-        return TagKey.create(Registries.ITEM, (ResourceLocation) accessor);
+        // Use 'c' namespace during data generation, placeholder replacement happens in build
+        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
     }
 
 }

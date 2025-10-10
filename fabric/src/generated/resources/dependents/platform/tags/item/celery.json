@@ -2,7 +2,6 @@
   "values": [
     "croptopia:celery",
     "#c:vegetables/celery",
-    "croptopia:celery",
     "#c:crops/celery"
   ]
 }

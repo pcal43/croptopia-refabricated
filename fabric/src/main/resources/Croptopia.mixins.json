@@ -10,7 +10,6 @@
     "ItemMixin",
     "accessor.LootTableBuilderAccessor",
     "datagen.IdentifierAccessor",
-    "datagen.ObjectBuilderAccessor",
     "datagen.PathProviderAccessor",
     "datagen.TagProviderAccessor"
   ],

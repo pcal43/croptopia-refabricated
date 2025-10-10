@@ -5,21 +5,23 @@ import com.epherical.croptopia.register.helpers.FarmlandCrop;
 import com.epherical.croptopia.register.helpers.Tree;
 import com.epherical.croptopia.register.helpers.TreeCrop;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagBuilder;
+import net.minecraft.tags.TagEntry;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CroptopiaBlockTagProvider extends IntrinsicHolderTagsProvider<Block> {
+public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
 
-    public CroptopiaBlockTagProvider(PackOutput packOutput,
-                                     CompletableFuture<HolderLookup.Provider> completableFuture) {
-        super(packOutput, Registries.BLOCK, completableFuture, block -> block.builtInRegistryHolder().key());
-    }
+	public CroptopiaBlockTagProvider(FabricDataOutput output,
+	                                CompletableFuture<HolderLookup.Provider> completableFuture) {
+		super(output, completableFuture);
+	}
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
@@ -32,56 +34,78 @@ public class CroptopiaBlockTagProvider extends IntrinsicHolderTagsProvider<Block
     }
 
     protected void generateSaplings() {
-        IntrinsicTagAppender<Block> saplings = this.tag(BlockTags.SAPLINGS);
+        TagBuilder saplings = this.getOrCreateRawBuilder(BlockTags.SAPLINGS);
         for (TreeCrop crop : TreeCrop.copy()) {
-            saplings.add(crop.getSaplingBlock());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
+            if (id != null) saplings.add(TagEntry.element(id));
         }
         for (Tree crop : Tree.copy()) {
-            saplings.add(crop.getSaplingBlock());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
+            if (id != null) saplings.add(TagEntry.element(id));
         }
     }
 
     protected void generateBarkLogs() {
-        IntrinsicTagAppender<Block> burnableLog = this.tag(BlockTags.LOGS_THAT_BURN);
         for (Tree crop : Tree.copy()) {
             // add different log types to log tag of this crop
-            tag(crop.getLogBlockTag())
-                    .add(crop.getLog())
-                    .add(crop.getStrippedLog())
-                    .add(crop.getWood())
-                    .add(crop.getStrippedWood());
+            TagBuilder treeLogs = this.getOrCreateRawBuilder(crop.getLogBlockTag());
+            ResourceLocation log = BuiltInRegistries.BLOCK.getKey(crop.getLog());
+            ResourceLocation sLog = BuiltInRegistries.BLOCK.getKey(crop.getStrippedLog());
+            ResourceLocation wood = BuiltInRegistries.BLOCK.getKey(crop.getWood());
+            ResourceLocation sWood = BuiltInRegistries.BLOCK.getKey(crop.getStrippedWood());
+            if (log != null) treeLogs.add(TagEntry.element(log));
+            if (sLog != null) treeLogs.add(TagEntry.element(sLog));
+            if (wood != null) treeLogs.add(TagEntry.element(wood));
+            if (sWood != null) treeLogs.add(TagEntry.element(sWood));
+
             // make this crop log burnable
-            burnableLog.addTag(crop.getLogBlockTag());
+            TagBuilder burnable = this.getOrCreateRawBuilder(BlockTags.LOGS_THAT_BURN);
+            burnable.add(TagEntry.tag(crop.getLogBlockTag().location()));
         }
     }
 
     protected void generateLeaves() {
-        IntrinsicTagAppender<Block> leaves = this.tag(BlockTags.LEAVES);
-        IntrinsicTagAppender<Block> hoe = this.tag(BlockTags.MINEABLE_WITH_HOE);
+        TagBuilder leaves = this.getOrCreateRawBuilder(BlockTags.LEAVES);
+        TagBuilder hoe = this.getOrCreateRawBuilder(BlockTags.MINEABLE_WITH_HOE);
         for (TreeCrop crop : TreeCrop.TREE_CROPS) {
-            leaves.add(crop.getLeaves());
-            hoe.add(crop.getLeaves());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
+            if (id != null) {
+                leaves.add(TagEntry.element(id));
+                hoe.add(TagEntry.element(id));
+            }
         }
         for (Tree crop : Tree.copy()) {
-            leaves.add(crop.getLeaves());
-            hoe.add(crop.getLeaves());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
+            if (id != null) {
+                leaves.add(TagEntry.element(id));
+                hoe.add(TagEntry.element(id));
+            }
         }
     }
 
     protected void generateCrops() {
-        IntrinsicTagAppender<Block> crops = this.tag(BlockTags.CROPS);
+        TagBuilder crops = this.getOrCreateRawBuilder(BlockTags.CROPS);
         for (FarmlandCrop crop : FarmlandCrop.copy()) {
-            crops.add(crop.asBlock());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
+            if (id != null) crops.add(TagEntry.element(id));
         }
         for (TreeCrop crop : TreeCrop.copy()) {
-            crops.add(crop.asBlock());
+            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
+            if (id != null) crops.add(TagEntry.element(id));
         }
     }
 
     protected void generateMisc() {
-        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(Content.SALT_ORE_BLOCK);
-        tag(BlockTags.AZALEA_ROOT_REPLACEABLE).add(Content.SALT_ORE_BLOCK);
-        tag(BlockTags.DRIPSTONE_REPLACEABLE).add(Content.SALT_ORE_BLOCK);
-        tag(BlockTags.ENDERMAN_HOLDABLE).add(Content.SALT_ORE_BLOCK);
+        TagBuilder shovel = this.getOrCreateRawBuilder(BlockTags.MINEABLE_WITH_SHOVEL);
+        TagBuilder azalea = this.getOrCreateRawBuilder(BlockTags.AZALEA_ROOT_REPLACEABLE);
+        TagBuilder drip = this.getOrCreateRawBuilder(BlockTags.DRIPSTONE_REPLACEABLE);
+        TagBuilder enderman = this.getOrCreateRawBuilder(BlockTags.ENDERMAN_HOLDABLE);
+        ResourceLocation saltOre = BuiltInRegistries.BLOCK.getKey(Content.SALT_ORE_BLOCK);
+        if (saltOre != null) {
+            shovel.add(TagEntry.element(saltOre));
+            azalea.add(TagEntry.element(saltOre));
+            drip.add(TagEntry.element(saltOre));
+            enderman.add(TagEntry.element(saltOre));
+        }
     }
 }

@@ -79,12 +79,26 @@ loom {
             inherit client
             name "Data Generation"
             vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${getProject().file("src/generated/resources")}"
+            vmArg "-Dfabric-api.datagen.output-dir=${getProject().file("build/datagen/output")}"
             runDir "build/datagen"
             ideConfigGenerated = true
         }
     }
 }
+
+// Preserve the output of data generation in the source tree so we can more easily detect problems
+// We could also generate directly into src/generated, but that tends to cause issues with the .cache directory;
+// generating into build just seems cleaner.
+task copyDatagenOutput(type: Copy) {
+    doFirst {
+        delete "src/generated/resources"
+    }
+    from "build/datagen/output"
+    into "src/generated/resources"
+    exclude ".cache/**"
+    
+}
+runDatagen.finalizedBy copyDatagenOutput
 
 
 // copy the generated resources from our source tree into the build
@@ -102,7 +116,7 @@ processResources {
         def modId = isDatagenBuild ? "croptopia" : "croptopia-fabric"
         expand "mod_version": rootProject.version, "mod_id": modId
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
-     }
+    }
 
     from(sourceSets.main.resources.srcDirs) {
         include('**/data/**')
@@ -111,8 +125,8 @@ processResources {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
 }
-tasks.processResources.dependsOn(rootProject.tasks.processResources)
 
+tasks.processResources.dependsOn(rootProject.tasks.processResources) // REVIEW 1.21.6 is this necessary?
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"

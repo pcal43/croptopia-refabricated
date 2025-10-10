@@ -1,8 +1,0 @@
-{
-  "values": [
-    "croptopia:date",
-    "#${dependent}:fruits/date",
-    "croptopia:date",
-    "#${dependent}:crops/date"
-  ]
-}
