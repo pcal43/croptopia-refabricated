@@ -42,7 +42,7 @@ public class IceCream implements ItemLike {
     }
 
     public void registerItem(RegisterFunction<Item> register) {
-        this.item = register.register(CroptopiaMod.createIdentifier(name), () -> new Item(createGroup().food(createFood(ICE_CREAM_7))));
+        this.item = register.register(CroptopiaMod.createIdentifier(name), id -> new Item(createGroup(id).food(createFood(ICE_CREAM_7))));
     }
 
     public static List<IceCream> copy() {
