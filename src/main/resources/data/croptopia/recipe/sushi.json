@@ -3,7 +3,7 @@
   "ingredients": [
     "minecraft:seagrass",
     "#croptopia:fishes",
-    "#${dependent}:rice"
+    "#c:rice"
   ],
   "result": {
     "id": "croptopia:sushi",

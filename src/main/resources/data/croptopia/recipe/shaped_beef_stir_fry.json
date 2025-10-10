@@ -5,11 +5,11 @@
     "253"
   ],
   "key": {
-    "1": "#${dependent}:broccoli",
-    "2": "#${dependent}:olive_oils",
-    "3": "#${dependent}:garlic",
+    "1": "#c:broccoli",
+    "2": "#c:olive_oils",
+    "3": "#c:garlic",
     "4": "minecraft:beef",
-    "5": "#${dependent}:soy_sauces",
+    "5": "#c:soy_sauces",
     "6": "minecraft:carrot"
   },
   "result": {

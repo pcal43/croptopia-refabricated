@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "croptopia:frying_pan",
+    "2": "#c:milks",
+    "3": "minecraft:egg",
+    "4": "#c:spinach",
+    "5": "#c:flour",
+    "6": "#c:onions"
+  },
+  "pattern": [
+    " 1 ",
+    "234",
+    "5 6"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:quiche"
+  }
+}

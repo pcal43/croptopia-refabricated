@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:doughs",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:tofu",
+    "#c:doughs",
+    "#c:chile_peppers",
+    "#c:tofu",
     "croptopia:cooking_pot"
   ],
   "result": {

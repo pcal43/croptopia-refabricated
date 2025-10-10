@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_shrimp": {
+      "conditions": {
+        "items": [
+          {
+            "items": "croptopia:shrimp"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:cooked_shrimp_from_shrimp"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_shrimp"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:cooked_shrimp_from_shrimp"
+    ]
+  }
+}

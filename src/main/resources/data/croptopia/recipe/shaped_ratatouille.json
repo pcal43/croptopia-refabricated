@@ -7,14 +7,14 @@
   ],
   "key": {
     "1": "croptopia:frying_pan",
-    "2": "#${dependent}:eggplants",
-    "3": "#${dependent}:tomatoes",
-    "4": "#${dependent}:squashes",
-    "5": "#${dependent}:zucchini",
-    "6": "#${dependent}:olive_oils",
-    "7": "#${dependent}:onions",
-    "8": "#${dependent}:bellpeppers",
-    "9": "#${dependent}:basil"
+    "2": "#c:eggplants",
+    "3": "#c:tomatoes",
+    "4": "#c:squashes",
+    "5": "#c:zucchini",
+    "6": "#c:olive_oils",
+    "7": "#c:onions",
+    "8": "#c:bellpeppers",
+    "9": "#c:basil"
   },
   "result": {
     "id": "croptopia:ratatouille",

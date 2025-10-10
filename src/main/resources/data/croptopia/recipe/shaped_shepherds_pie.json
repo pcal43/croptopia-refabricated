@@ -8,13 +8,13 @@
   "key": {
     "F": "croptopia:frying_pan",
     "1": "#croptopia:beef_mutton",
-    "2": "#${dependent}:salts",
+    "2": "#c:salts",
     "3": "croptopia:pepper",
     "4": "minecraft:potato",
-    "5": "#${dependent}:tomatoes",
-    "6": "#${dependent}:corn",
-    "7": "#${dependent}:garlic",
-    "8": "#${dependent}:onions"
+    "5": "#c:tomatoes",
+    "6": "#c:corn",
+    "7": "#c:garlic",
+    "8": "#c:onions"
   },
   "result": {
     "id": "croptopia:shepherds_pie",

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pineapple": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:pineapples"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:pineapple_juice"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pineapple"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:pineapple_juice"
+    ]
+  }
+}

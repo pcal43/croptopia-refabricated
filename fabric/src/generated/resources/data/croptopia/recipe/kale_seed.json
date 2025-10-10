@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:kale"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:kale_seed"
+  }
+}

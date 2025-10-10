@@ -1,8 +1,0 @@
-{
-  "values": [
-    "croptopia:saguaro",
-    "#${dependent}:fruits/saguaro",
-    "croptopia:saguaro",
-    "#${dependent}:crops/saguaro"
-  ]
-}

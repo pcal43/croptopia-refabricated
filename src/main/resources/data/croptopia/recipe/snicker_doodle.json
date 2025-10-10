@@ -3,7 +3,7 @@
   "ingredients": [
     "croptopia:cinnamon",
     "minecraft:sugar",
-    "#${dependent}:flour"
+    "#c:flour"
   ],
   "result": {
     "id": "croptopia:snicker_doodle",

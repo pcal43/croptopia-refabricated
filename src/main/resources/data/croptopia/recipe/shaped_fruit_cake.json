@@ -8,11 +8,11 @@
   "key": {
     "1": "#${dependent}:fruits",
     "2": "minecraft:sugar",
-    "3": "#${dependent}:lemons",
-    "4": "#${dependent}:pecans",
+    "3": "#c:lemons",
+    "4": "#c:pecans",
     "5": "croptopia:cinnamon",
-    "6": "#${dependent}:salts",
-    "7": "#${dependent}:nutmegs",
+    "6": "#c:salts",
+    "7": "#c:nutmegs",
     "8": "minecraft:egg"
   },
   "result": {

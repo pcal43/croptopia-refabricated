@@ -3,7 +3,7 @@
   "ingredients": [
     "minecraft:bread",
     "minecraft:cooked_porkchop",
-    "#${dependent}:cheeses"
+    "#c:cheeses"
   ],
   "result": {
     "id": "croptopia:ham_sandwich",

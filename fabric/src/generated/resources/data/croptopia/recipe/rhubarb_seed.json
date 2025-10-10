@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:rhubarb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:rhubarb_seed"
+  }
+}

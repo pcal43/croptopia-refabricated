@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:noodles",
-    "#${dependent}:cheeses"
+    "#c:noodles",
+    "#c:cheeses"
   ],
   "result": {
     "id": "croptopia:ravioli",

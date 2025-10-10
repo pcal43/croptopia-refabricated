@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:strawberries",
+    "minecraft:sugar",
+    "croptopia:cooking_pot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:strawberry_jam"
+  }
+}

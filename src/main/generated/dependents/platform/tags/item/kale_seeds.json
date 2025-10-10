@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:kale_seed",
-    "#${dependent}:seeds/kale"
-  ]
-}

@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:nuts",
-    "#${dependent}:nuts",
-    "#${dependent}:nuts",
-    "#${dependent}:raisins",
-    "#${dependent}:salts",
-    "#${dependent}:chocolates"
+    "#c:nuts",
+    "#c:nuts",
+    "#c:nuts",
+    "#c:raisins",
+    "#c:salts",
+    "#c:chocolates"
   ],
   "result": {
     "id": "croptopia:trail_mix",

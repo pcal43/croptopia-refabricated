@@ -3,10 +3,10 @@
   "ingredients": [
     "minecraft:egg",
     "minecraft:sugar",
-    "#${dependent}:milks",
-    "#${dependent}:flour",
-    "#${dependent}:vanilla",
-    "#${dependent}:rums",
+    "#c:milks",
+    "#c:flour",
+    "#c:vanilla",
+    "#c:rums",
     "croptopia:whipping_cream"
   ],
   "result": {

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:almonds",
+    "#c:almonds",
+    "#minecraft:saplings"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:almond_sapling"
+  }
+}

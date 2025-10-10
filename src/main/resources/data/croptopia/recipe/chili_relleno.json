@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:egg",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:olive_oils",
-    "#${dependent}:flour",
-    "#${dependent}:salts",
+    "#c:chile_peppers",
+    "#c:olive_oils",
+    "#c:flour",
+    "#c:salts",
     "croptopia:cooking_pot"
   ],
   "result": {

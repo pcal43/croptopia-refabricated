@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:tea_leaves"
+            "tag": "c:tea_leaves"
           }
         ]
       }

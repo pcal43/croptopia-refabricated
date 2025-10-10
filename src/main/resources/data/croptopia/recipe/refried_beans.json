@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:blackbeans",
-    "#${dependent}:blackbeans",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:cheeses",
+    "#c:blackbeans",
+    "#c:blackbeans",
+    "#c:chile_peppers",
+    "#c:cheeses",
     "croptopia:frying_pan"
   ],
   "result": {

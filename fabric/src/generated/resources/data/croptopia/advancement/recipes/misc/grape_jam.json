@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_grape": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:grapes"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:grape_jam"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_grape"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:grape_jam"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_frying_pan": {
+      "conditions": {
+        "items": [
+          {
+            "items": "croptopia:frying_pan"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:sweet_crepes"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "took_flour": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:flour"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "took_flour",
+      "has_frying_pan"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:sweet_crepes"
+    ]
+  }
+}

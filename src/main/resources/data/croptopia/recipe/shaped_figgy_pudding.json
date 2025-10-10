@@ -6,10 +6,10 @@
   ],
   "key": {
     "1": "minecraft:egg",
-    "2": "#${dependent}:water_bottles",
+    "2": "#c:water_bottles",
     "3": "croptopia:whipping_cream",
-    "4": "#${dependent}:dates",
-    "5": "#${dependent}:figs",
+    "4": "#c:dates",
+    "5": "#c:figs",
     "6": "minecraft:sugar"
   },
   "result": {

@@ -2,12 +2,12 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:glass_bottle",
-    "#${dependent}:kale",
+    "#c:kale",
     "minecraft:ice",
-    "#${dependent}:milks",
-    "#${dependent}:mangos",
-    "#${dependent}:yoghurts",
-    "#${dependent}:tomatoes"
+    "#c:milks",
+    "#c:mangos",
+    "#c:yoghurts",
+    "#c:tomatoes"
   ],
   "result": {
     "id": "croptopia:kale_smoothie",

@@ -9,7 +9,7 @@
     "2": "minecraft:beef",
     "3": "minecraft:potato",
     "4": "minecraft:carrot",
-    "5": "#${dependent}:flour"
+    "5": "#c:flour"
   },
   "result": {
     "id": "croptopia:beef_stew",

@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:bowl",
-    "#${dependent}:strawberries",
-    "#${dependent}:bananas",
-    "#${dependent}:grapes",
+    "#c:strawberries",
+    "#c:bananas",
+    "#c:grapes",
     "minecraft:apple"
   ],
   "result": {

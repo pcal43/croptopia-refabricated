@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:cantaloupes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:cantaloupe_seed"
+  }
+}

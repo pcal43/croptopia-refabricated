@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:doughs",
-    "#${dependent}:lettuce",
+    "#c:doughs",
+    "#c:lettuce",
     "minecraft:egg",
     "#croptopia:meat_replacements"
   ],

@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:glass_bottle",
-    "#${dependent}:coffee_beans",
+    "#c:coffee_beans",
     "croptopia:food_press"
   ],
   "result": {

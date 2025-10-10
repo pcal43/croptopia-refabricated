@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:milks"
+            "tag": "c:milks"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:limes"
+            "tag": "c:limes"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:salts"
+            "tag": "c:salts"
           }
         ]
       }

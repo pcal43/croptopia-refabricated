@@ -6,10 +6,10 @@
     "465"
   ],
   "key": {
-    "1": "#${dependent}:asparagus",
-    "2": "#${dependent}:olive_oils",
-    "3": "#${dependent}:garlic",
-    "4": "#${dependent}:salts",
+    "1": "#c:asparagus",
+    "2": "#c:olive_oils",
+    "3": "#c:garlic",
+    "4": "#c:salts",
     "5": "croptopia:pepper",
     "6": "croptopia:frying_pan"
   },

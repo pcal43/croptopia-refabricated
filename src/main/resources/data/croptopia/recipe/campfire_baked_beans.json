@@ -1,6 +1,6 @@
 {
   "type": "minecraft:campfire_cooking",
-  "ingredient": "#${dependent}:blackbeans",
+  "ingredient": "#c:blackbeans",
   "result": {
     "id": "croptopia:baked_beans"
   },

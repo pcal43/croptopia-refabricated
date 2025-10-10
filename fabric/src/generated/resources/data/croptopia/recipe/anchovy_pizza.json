@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "#c:tomatoes",
+    "2": "#c:anchovies",
+    "3": "#c:cheeses",
+    "4": "#c:doughs",
+    "7": "croptopia:frying_pan"
+  },
+  "pattern": [
+    "123",
+    " 4 ",
+    " 7 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:anchovy_pizza"
+  }
+}

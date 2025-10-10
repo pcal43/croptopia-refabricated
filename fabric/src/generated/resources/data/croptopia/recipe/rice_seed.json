@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:rice"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:rice_seed"
+  }
+}

@@ -8,12 +8,12 @@
   "key": {
     "F": "croptopia:frying_pan",
     "1": "minecraft:beef",
-    "2": "#${dependent}:mustard",
+    "2": "#c:mustard",
     "3": "croptopia:pepper",
-    "4": "#${dependent}:onions",
+    "4": "#c:onions",
     "5": "minecraft:egg",
     "6": "minecraft:brown_mushroom",
-    "9": "#${dependent}:flour"
+    "9": "#c:flour"
   },
   "result": {
     "id": "croptopia:beef_wellington",

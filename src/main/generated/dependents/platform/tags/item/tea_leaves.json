@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:tea_leaves",
-    "#${dependent}:crops/tea_leaves"
-  ]
-}

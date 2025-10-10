@@ -3,8 +3,8 @@
   "ingredients": [
     "minecraft:beef",
     "minecraft:porkchop",
-    "#${dependent}:paprika",
-    "#${dependent}:chile_peppers"
+    "#c:paprika",
+    "#c:chile_peppers"
   ],
   "result": {
     "id": "croptopia:pepperoni",

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:coconuts"
+            "tag": "c:coconuts"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:lemons"
+            "tag": "c:lemons"
           }
         ]
       }

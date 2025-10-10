@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "#c:potatoes",
+    "2": "#c:salts",
+    "3": "croptopia:mortar_and_pestle",
+    "4": "#c:milks"
+  },
+  "pattern": [
+    "1 ",
+    "24",
+    "3 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:mashed_potatoes"
+  }
+}

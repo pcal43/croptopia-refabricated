@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:flour",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:olive_oils",
+    "#c:flour",
+    "#c:chile_peppers",
+    "#c:olive_oils",
     "#croptopia:chicken_replacements",
     "croptopia:frying_pan"
   ],

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:salts",
+    "#minecraft:saplings"
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:dead_bush"
+  }
+}

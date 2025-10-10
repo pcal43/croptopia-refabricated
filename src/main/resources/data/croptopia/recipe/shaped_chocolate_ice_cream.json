@@ -7,8 +7,8 @@
   ],
   "key": {
     "1": "minecraft:egg",
-    "2": "#${dependent}:chocolates",
-    "3": "#${dependent}:milk_bottles",
+    "2": "#c:chocolates",
+    "3": "#c:milk_bottles",
     "4": "minecraft:sugar",
     "5": "croptopia:cooking_pot"
   },

@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:tomatoes",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:salts",
-    "#${dependent}:limes",
-    "#${dependent}:tomatillos"
+    "#c:tomatoes",
+    "#c:chile_peppers",
+    "#c:salts",
+    "#c:limes",
+    "#c:tomatillos"
   ],
   "result": {
     "id": "croptopia:salsa",

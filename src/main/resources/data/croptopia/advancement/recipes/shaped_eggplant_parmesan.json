@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:eggplants"
+            "tag": "c:eggplants"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:basil"
+            "tag": "c:basil"
           }
         ]
       }

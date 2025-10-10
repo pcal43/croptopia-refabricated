@@ -7,12 +7,12 @@
   ],
   "key": {
     "1": "croptopia:frying_pan",
-    "2": "#${dependent}:flour",
-    "3": "#${dependent}:salts",
+    "2": "#c:flour",
+    "3": "#c:salts",
     "4": "minecraft:sugar",
     "5": "minecraft:egg",
-    "6": "#${dependent}:vanilla",
-    "7": "#${dependent}:blueberries"
+    "6": "#c:vanilla",
+    "7": "#c:blueberries"
   },
   "result": {
     "id": "croptopia:scones",

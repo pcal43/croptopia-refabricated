@@ -7,11 +7,11 @@
   ],
   "key": {
     "1": "croptopia:frying_pan",
-    "2": "#${dependent}:flour",
+    "2": "#c:flour",
     "3": "minecraft:beef",
     "4": "minecraft:potato",
-    "5": "#${dependent}:onions",
-    "6": "#${dependent}:rutabagas",
+    "5": "#c:onions",
+    "6": "#c:rutabagas",
     "7": "croptopia:pepper"
   },
   "result": {

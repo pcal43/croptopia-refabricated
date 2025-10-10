@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:starfruits",
+    "#c:starfruits",
+    "#minecraft:saplings"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:starfruit_sapling"
+  }
+}

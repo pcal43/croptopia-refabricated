@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:date_sapling",
-    "#${dependent}:saplings/date"
-  ]
-}

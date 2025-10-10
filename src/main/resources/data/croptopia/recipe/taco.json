@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:tortillas",
-    "#${dependent}:cheeses",
-    "#${dependent}:lettuce",
+    "#c:tortillas",
+    "#c:cheeses",
+    "#c:lettuce",
     "croptopia:salsa",
     "#croptopia:meat_replacements"
   ],

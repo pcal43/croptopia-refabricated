@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:zucchini"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:zucchini_seed"
+  }
+}

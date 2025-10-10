@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:radishes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:radish_seed"
+  }
+}

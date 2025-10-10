@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:blackbeans",
-    "#${dependent}:rice",
-    "#${dependent}:tomatoes",
-    "#${dependent}:tortillas"
+    "#c:blackbeans",
+    "#c:rice",
+    "#c:tomatoes",
+    "#c:tortillas"
   ],
   "result": {
     "id": "croptopia:burrito",

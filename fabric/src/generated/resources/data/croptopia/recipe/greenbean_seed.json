@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:greenbeans"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:greenbean_seed"
+  }
+}

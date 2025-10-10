@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:orange_dye"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_turmeric": {
+      "conditions": {
+        "items": [
+          {
+            "items": "croptopia:turmeric"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_turmeric"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:orange_dye"
+    ]
+  }
+}

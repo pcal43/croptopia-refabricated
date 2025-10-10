@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:toasts",
-    "#${dependent}:butters"
+    "#c:toasts",
+    "#c:butters"
   ],
   "result": {
     "id": "croptopia:buttered_toast",

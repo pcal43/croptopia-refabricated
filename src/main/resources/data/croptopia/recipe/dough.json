@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "croptopia:cooking_pot",
-    "#${dependent}:water_bottles",
-    "#${dependent}:flour"
+    "#c:water_bottles",
+    "#c:flour"
   ],
   "result": {
     "id": "croptopia:dough",

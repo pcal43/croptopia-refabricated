@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:eggplants"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:eggplant_seed"
+  }
+}

@@ -17,7 +17,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:tools/knives"
+            "tag": "c:tools/knives"
           }
         ]
       }

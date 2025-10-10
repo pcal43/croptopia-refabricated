@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "croptopia:cooking_pot",
-    "#${dependent}:water_bottles",
-    "#${dependent}:soybeans"
+    "#c:water_bottles",
+    "#c:soybeans"
   ],
   "result": {
     "id": "croptopia:tofu",

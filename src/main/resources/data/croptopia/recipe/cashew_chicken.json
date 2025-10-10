@@ -1,10 +1,10 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:cashews",
+    "#c:cashews",
     "minecraft:cooked_chicken",
-    "#${dependent}:soy_sauces",
-    "#${dependent}:cabbage",
+    "#c:soy_sauces",
+    "#c:cabbage",
     "minecraft:carrot"
   ],
   "result": {

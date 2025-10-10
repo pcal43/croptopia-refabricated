@@ -1,6 +1,0 @@
-{
-  "values": [
-    "croptopia:apple_sapling",
-    "#${dependent}:saplings/apple"
-  ]
-}

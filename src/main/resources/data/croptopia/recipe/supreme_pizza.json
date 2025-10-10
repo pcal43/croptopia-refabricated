@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:doughs",
-    "#${dependent}:cheeses",
-    "#${dependent}:tomatoes",
-    "#${dependent}:bellpeppers",
-    "#${dependent}:olives",
+    "#c:doughs",
+    "#c:cheeses",
+    "#c:tomatoes",
+    "#c:bellpeppers",
+    "#c:olives",
     "#croptopia:meat_replacements",
     "croptopia:frying_pan"
   ],

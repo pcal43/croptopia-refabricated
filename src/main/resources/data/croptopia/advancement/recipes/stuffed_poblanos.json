@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:corn"
+            "tag": "c:corn"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:blackbeans"
+            "tag": "c:blackbeans"
           }
         ]
       }

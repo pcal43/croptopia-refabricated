@@ -1,0 +1,33 @@
+{
+  "values": [
+    "#c:artichokes",
+    "#c:asparagus",
+    "#c:broccoli",
+    "#c:cabbage",
+    "#c:cauliflower",
+    "#c:celery",
+    "#c:cucumbers",
+    "#c:eggplants",
+    "#c:garlic",
+    "#c:gingers",
+    "#c:greenbeans",
+    "#c:greenonions",
+    "#c:kale",
+    "#c:leek",
+    "#c:lettuce",
+    "#c:mustard",
+    "#c:onions",
+    "#c:radishes",
+    "#c:rhubarb",
+    "#c:rutabagas",
+    "#c:soybeans",
+    "#c:spinach",
+    "#c:squashes",
+    "#c:sweetpotatos",
+    "#c:tomatillos",
+    "#c:tomatoes",
+    "#c:turnips",
+    "#c:yams",
+    "#c:zucchini"
+  ]
+}

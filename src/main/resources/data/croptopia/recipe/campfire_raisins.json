@@ -1,6 +1,6 @@
 {
   "type": "minecraft:campfire_cooking",
-  "ingredient": "#${dependent}:grapes",
+  "ingredient": "#c:grapes",
   "result": {
     "id": "croptopia:raisins"
   },

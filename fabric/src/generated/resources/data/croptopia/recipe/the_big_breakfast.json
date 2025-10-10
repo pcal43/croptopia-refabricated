@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "minecraft:egg",
+    "2": "croptopia:bacon",
+    "3": "croptopia:hashed_brown",
+    "4": "croptopia:baked_beans",
+    "5": "#c:sausages",
+    "6": "croptopia:toast",
+    "7": "croptopia:frying_pan"
+  },
+  "pattern": [
+    "123",
+    "736",
+    " 45"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:the_big_breakfast"
+  }
+}

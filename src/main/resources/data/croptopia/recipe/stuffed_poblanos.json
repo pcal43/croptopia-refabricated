@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "#croptopia:beef_replacements",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:blackbeans",
-    "#${dependent}:corn",
-    "#${dependent}:cheeses",
-    "#${dependent}:rice",
+    "#c:chile_peppers",
+    "#c:blackbeans",
+    "#c:corn",
+    "#c:cheeses",
+    "#c:rice",
     "croptopia:cooking_pot"
   ],
   "result": {

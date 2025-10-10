@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:pecans",
+    "minecraft:sugar",
+    "minecraft:egg",
+    "#c:flour",
+    "#c:doughs",
+    "croptopia:frying_pan"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:pecan_pie"
+  }
+}

@@ -7,10 +7,10 @@
   ],
   "key": {
     "1": "minecraft:potato",
-    "2": "#${dependent}:flour",
-    "3": "#${dependent}:greenonions",
+    "2": "#c:flour",
+    "3": "#c:greenonions",
     "4": "croptopia:bacon",
-    "5": "#${dependent}:water_bottles"
+    "5": "#c:water_bottles"
   },
   "result": {
     "id": "croptopia:potato_soup",

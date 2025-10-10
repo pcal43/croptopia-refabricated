@@ -7,7 +7,7 @@
   "key": {
     "1": "minecraft:egg",
     "2": "minecraft:sugar",
-    "3": "#${dependent}:strawberries",
+    "3": "#c:strawberries",
     "4": "croptopia:whipping_cream"
   },
   "result": {

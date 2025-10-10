@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:kale"
+            "tag": "c:kale"
           }
         ]
       }

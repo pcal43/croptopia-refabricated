@@ -7,11 +7,11 @@
   ],
   "key": {
     "1": "minecraft:egg",
-    "2": "#${dependent}:eggplants",
-    "3": "#${dependent}:olive_oils",
+    "2": "#c:eggplants",
+    "3": "#c:olive_oils",
     "4": "croptopia:pepper",
-    "5": "#${dependent}:cheeses",
-    "6": "#${dependent}:basil",
+    "5": "#c:cheeses",
+    "6": "#c:basil",
     "7": "minecraft:bread"
   },
   "result": {

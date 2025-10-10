@@ -3,8 +3,8 @@
   "ingredients": [
     "minecraft:potato",
     "croptopia:cooking_pot",
-    "#${dependent}:salts",
-    "#${dependent}:olive_oils"
+    "#c:salts",
+    "#c:olive_oils"
   ],
   "result": {
     "id": "croptopia:french_fries",

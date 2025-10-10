@@ -7,13 +7,13 @@
   ],
   "key": {
     "1": "minecraft:egg",
-    "2": "#${dependent}:water_bottles",
-    "3": "#${dependent}:vanilla",
+    "2": "#c:water_bottles",
+    "3": "#c:vanilla",
     "4": "croptopia:whipping_cream",
     "5": "minecraft:sugar",
-    "6": "#${dependent}:butters",
-    "7": "#${dependent}:dates",
-    "8": "#${dependent}:salts"
+    "6": "#c:butters",
+    "7": "#c:dates",
+    "8": "#c:salts"
   },
   "result": {
     "id": "croptopia:sticky_toffee_pudding",

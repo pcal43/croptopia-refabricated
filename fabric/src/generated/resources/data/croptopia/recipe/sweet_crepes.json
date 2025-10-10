@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "#c:flour",
+    "2": "minecraft:egg",
+    "3": "#c:milks",
+    "4": "#c:jams",
+    "5": "minecraft:sugar",
+    "6": "croptopia:frying_pan"
+  },
+  "pattern": [
+    "123",
+    "4 5",
+    " 6 "
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:sweet_crepes"
+  }
+}

@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:bananas"
+            "tag": "c:bananas"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:vanilla"
+            "tag": "c:vanilla"
           }
         ]
       }

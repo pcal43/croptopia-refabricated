@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:bread",
-    "#${dependent}:cheeses",
+    "#c:cheeses",
     "croptopia:frying_pan"
   ],
   "result": {
