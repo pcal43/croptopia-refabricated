@@ -3,8 +3,8 @@
   "ingredients": [
     "croptopia:cooking_pot",
     "croptopia:food_press",
-    "#${dependent}:milks",
-    "#${dependent}:salts"
+    "#c:milks",
+    "#c:salts"
   ],
   "result": {
     "id": "croptopia:butter",

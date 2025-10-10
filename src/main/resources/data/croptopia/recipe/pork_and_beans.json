@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:bowl",
-    "#${dependent}:blackbeans",
+    "#c:blackbeans",
     "minecraft:porkchop"
   ],
   "result": {

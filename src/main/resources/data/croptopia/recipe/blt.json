@@ -3,8 +3,8 @@
   "ingredients": [
     "minecraft:bread",
     "croptopia:cooked_bacon",
-    "#${dependent}:lettuce",
-    "#${dependent}:tomatoes"
+    "#c:lettuce",
+    "#c:tomatoes"
   ],
   "result": {
     "id": "croptopia:blt",

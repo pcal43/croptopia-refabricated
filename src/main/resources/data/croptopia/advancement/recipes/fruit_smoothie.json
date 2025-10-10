@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:foods/fruits"
+            "tag": "c:foods/fruits"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:milks"
+            "tag": "c:milks"
           }
         ]
       }

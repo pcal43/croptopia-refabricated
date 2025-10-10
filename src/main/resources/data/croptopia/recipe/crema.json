@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:milks",
-    "#${dependent}:limes",
-    "#${dependent}:salts"
+    "#c:milks",
+    "#c:limes",
+    "#c:salts"
   ],
   "result": {
     "id": "croptopia:crema",

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:rice",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:olive_oils",
+    "#c:rice",
+    "#c:chile_peppers",
+    "#c:olive_oils",
     "#croptopia:chicken_replacements"
   ],
   "result": {

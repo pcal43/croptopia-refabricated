@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:saguaros"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:saguaro_seed"
+  }
+}

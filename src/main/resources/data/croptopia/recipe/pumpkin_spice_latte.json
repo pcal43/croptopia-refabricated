@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:sugar",
-    "#${dependent}:paprika",
-    "#${dependent}:milks",
+    "#c:paprika",
+    "#c:milks",
     "minecraft:pumpkin",
     "croptopia:coffee"
   ],

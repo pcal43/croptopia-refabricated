@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:sugar",
-    "#${dependent}:corn",
+    "#c:corn",
     "minecraft:sugar"
   ],
   "result": {

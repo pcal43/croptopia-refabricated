@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:bowl",
+    "i": "minecraft:stick"
+  },
+  "pattern": [
+    "i",
+    "#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:mortar_and_pestle"
+  }
+}

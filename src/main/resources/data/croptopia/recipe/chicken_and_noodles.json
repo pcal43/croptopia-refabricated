@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:noodles",
-    "#${dependent}:chile_peppers",
-    "#${dependent}:olive_oils",
+    "#c:noodles",
+    "#c:chile_peppers",
+    "#c:olive_oils",
     "#croptopia:chicken_replacements",
     "croptopia:cooking_pot"
   ],

@@ -6,13 +6,13 @@
     "7 8"
   ],
   "key": {
-    "1": "#${dependent}:artichokes",
+    "1": "#c:artichokes",
     "2": "croptopia:pepper",
-    "3": "#${dependent}:lemons",
+    "3": "#c:lemons",
     "4": "minecraft:bread",
-    "5": "#${dependent}:cheeses",
-    "6": "#${dependent}:olive_oils",
-    "7": "#${dependent}:salts",
+    "5": "#c:cheeses",
+    "6": "#c:olive_oils",
+    "7": "#c:salts",
     "8": "croptopia:frying_pan"
   },
   "result": {

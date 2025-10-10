@@ -3,7 +3,7 @@
   "ingredients": [
     "croptopia:frying_pan",
     "minecraft:egg",
-    "#${dependent}:cheeses"
+    "#c:cheeses"
   ],
   "result": {
     "id": "croptopia:scrambled_eggs",

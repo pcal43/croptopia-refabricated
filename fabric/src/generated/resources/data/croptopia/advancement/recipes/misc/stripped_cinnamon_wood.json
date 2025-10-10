@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_strippedcinnamon_log": {
+      "conditions": {
+        "items": [
+          {
+            "items": "croptopia:stripped_cinnamon_log"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "croptopia:stripped_cinnamon_wood"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_strippedcinnamon_log"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "croptopia:stripped_cinnamon_wood"
+    ]
+  }
+}

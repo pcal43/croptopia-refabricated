@@ -7,12 +7,12 @@
   ],
   "key": {
     "1": "minecraft:egg",
-    "2": "#${dependent}:milks",
-    "3": "#${dependent}:vanilla",
-    "4": "#${dependent}:wines",
-    "5": "#${dependent}:strawberries",
+    "2": "#c:milks",
+    "3": "#c:vanilla",
+    "4": "#c:wines",
+    "5": "#c:strawberries",
     "6": "minecraft:bread",
-    "7": "#${dependent}:butters"
+    "7": "#c:butters"
   },
   "result": {
     "id": "croptopia:trifle",

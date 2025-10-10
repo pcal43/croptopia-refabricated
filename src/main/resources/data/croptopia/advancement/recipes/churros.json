@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:milks"
+            "tag": "c:milks"
           }
         ]
       }

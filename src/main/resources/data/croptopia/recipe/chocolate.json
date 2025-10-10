@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:cocoa_beans",
-    "#${dependent}:butters",
+    "#c:butters",
     "croptopia:cooking_pot"
   ],
   "result": {

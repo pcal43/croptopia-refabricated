@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:glass_bottle",
-    "#${dependent}:grapes",
-    "#${dependent}:grapes",
+    "#c:grapes",
+    "#c:grapes",
     "croptopia:food_press"
   ],
   "result": {

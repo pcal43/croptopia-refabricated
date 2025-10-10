@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:butters",
-    "#${dependent}:almonds",
+    "#c:butters",
+    "#c:almonds",
     "minecraft:sugar",
     "minecraft:sugar"
   ],

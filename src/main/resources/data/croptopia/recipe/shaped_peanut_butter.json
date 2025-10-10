@@ -7,7 +7,7 @@
   ],
   "key": {
     "1": "croptopia:food_press",
-    "2": "#${dependent}:peanuts"
+    "2": "#c:peanuts"
   },
   "result": {
     "id": "croptopia:peanut_butter",

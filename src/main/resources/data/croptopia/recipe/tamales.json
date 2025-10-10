@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:chicken",
-    "#${dependent}:onions",
+    "#c:onions",
     "croptopia:corn_husk",
-    "#${dependent}:flour",
-    "#${dependent}:salts",
-    "#${dependent}:chile_peppers",
+    "#c:flour",
+    "#c:salts",
+    "#c:chile_peppers",
     "croptopia:cooking_pot"
   ],
   "result": {

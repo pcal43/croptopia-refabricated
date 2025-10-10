@@ -6,7 +6,7 @@
   ],
   "key": {
     "1": "croptopia:peanut_butter",
-    "2": "#${dependent}:celery"
+    "2": "#c:celery"
   },
   "result": {
     "id": "croptopia:peanut_butter_with_celery",

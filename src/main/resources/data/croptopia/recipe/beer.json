@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:glass_bottle",
-    "#${dependent}:hops",
-    "#${dependent}:barley",
+    "#c:hops",
+    "#c:barley",
     "croptopia:food_press"
   ],
   "result": {

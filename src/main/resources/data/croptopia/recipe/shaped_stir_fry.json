@@ -5,11 +5,11 @@
     "526"
   ],
   "key": {
-    "1": "#${dependent}:broccoli",
-    "2": "#${dependent}:olive_oils",
-    "3": "#${dependent}:garlic",
-    "4": "#${dependent}:greenonions",
-    "5": "#${dependent}:bellpeppers",
+    "1": "#c:broccoli",
+    "2": "#c:olive_oils",
+    "3": "#c:garlic",
+    "4": "#c:greenonions",
+    "5": "#c:bellpeppers",
     "6": "minecraft:carrot"
   },
   "result": {

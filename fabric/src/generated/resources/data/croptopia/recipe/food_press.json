@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "H": "minecraft:hopper",
+    "I": "minecraft:piston"
+  },
+  "pattern": [
+    "I",
+    "H",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:food_press"
+  }
+}

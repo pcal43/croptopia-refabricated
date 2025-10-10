@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "croptopia:burrito",
-    "#${dependent}:flour",
+    "#c:flour",
     "croptopia:cooking_pot"
   ],
   "result": {

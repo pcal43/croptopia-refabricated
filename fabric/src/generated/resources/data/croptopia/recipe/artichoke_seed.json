@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:artichokes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:artichoke_seed"
+  }
+}

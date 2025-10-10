@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:sugar",
-    "#${dependent}:raisins",
-    "#${dependent}:rums",
-    "#${dependent}:milks",
+    "#c:raisins",
+    "#c:rums",
+    "#c:milks",
     "minecraft:egg",
     "croptopia:cooking_pot"
   ],

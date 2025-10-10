@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:strawberries",
+    "minecraft:sugar",
+    "minecraft:egg",
+    "#c:milks",
+    "croptopia:cooking_pot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:strawberry_ice_cream"
+  }
+}

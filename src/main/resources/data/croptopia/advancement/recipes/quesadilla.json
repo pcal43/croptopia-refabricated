@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:tortillas"
+            "tag": "c:tortillas"
           }
         ]
       }
@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:avocados"
+            "tag": "c:avocados"
           }
         ]
       }

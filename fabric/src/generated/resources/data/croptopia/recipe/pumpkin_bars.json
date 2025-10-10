@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "minecraft:egg",
+    "2": "minecraft:sugar",
+    "3": "minecraft:pumpkin",
+    "4": "#c:flour",
+    "5": "croptopia:cinnamon",
+    "6": "#c:salts",
+    "7": "#c:butters",
+    "8": "#c:vanilla"
+  },
+  "pattern": [
+    "586",
+    "124",
+    "373"
+  ],
+  "result": {
+    "count": 3,
+    "id": "croptopia:pumpkin_bars"
+  }
+}

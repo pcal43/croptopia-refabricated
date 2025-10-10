@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:soybeans"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:soybean_seed"
+  }
+}

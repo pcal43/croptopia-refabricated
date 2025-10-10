@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:bowl",
-    "#${dependent}:leek",
+    "#c:leek",
     "minecraft:potato",
-    "#${dependent}:milks"
+    "#c:milks"
   ],
   "result": {
     "id": "croptopia:leek_soup",

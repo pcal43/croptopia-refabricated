@@ -1,8 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:nuts",
-    "#${dependent}:nuts",
+    "#c:nuts",
+    "#c:nuts",
     "minecraft:sugar",
     "minecraft:sugar",
     "minecraft:egg",

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "#croptopia:pork_replacements",
+    "2": "#c:onions",
+    "3": "#croptopia:beef_replacements",
+    "4": "#c:cabbage",
+    "5": "#c:tomatoes",
+    "8": "croptopia:frying_pan"
+  },
+  "pattern": [
+    "123",
+    "454",
+    "183"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:goulash"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:squashes"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:squash_seed"
+  }
+}

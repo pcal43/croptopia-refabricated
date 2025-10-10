@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:yams"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:yam_seed"
+  }
+}

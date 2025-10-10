@@ -5,9 +5,9 @@
     "324"
   ],
   "key": {
-    "1": "#${dependent}:asparagus",
-    "2": "#${dependent}:olive_oils",
-    "3": "#${dependent}:cheeses",
+    "1": "#c:asparagus",
+    "2": "#c:olive_oils",
+    "3": "#c:cheeses",
     "4": "croptopia:pepper"
   },
   "result": {

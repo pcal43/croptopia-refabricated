@@ -1,11 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:bananas",
-    "#${dependent}:vanilla",
+    "#c:bananas",
+    "#c:vanilla",
     "minecraft:sugar",
     "minecraft:egg",
-    "#${dependent}:milks",
+    "#c:milks",
     "croptopia:frying_pan"
   ],
   "result": {

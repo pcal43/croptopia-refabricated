@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "#c:currants"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:currant_seed"
+  }
+}

@@ -2,9 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     "minecraft:porkchop",
-    "#${dependent}:tortillas",
-    "#${dependent}:cabbage",
-    "#${dependent}:onions",
+    "#c:tortillas",
+    "#c:cabbage",
+    "#c:onions",
     "croptopia:frying_pan"
   ],
   "result": {

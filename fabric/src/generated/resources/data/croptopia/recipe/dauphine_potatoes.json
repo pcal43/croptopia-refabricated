@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "croptopia:frying_pan",
+    "2": "#c:water_bottles",
+    "3": "#c:milks",
+    "4": "#c:butters",
+    "5": "#c:flour",
+    "6": "#c:olive_oils"
+  },
+  "pattern": [
+    "213",
+    "456"
+  ],
+  "result": {
+    "count": 1,
+    "id": "croptopia:dauphine_potatoes"
+  }
+}

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    "#${dependent}:milks",
+    "#c:milks",
     "minecraft:sugar",
-    "#${dependent}:flour",
+    "#c:flour",
     "croptopia:cinnamon"
   ],
   "result": {

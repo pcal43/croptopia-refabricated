@@ -6,13 +6,13 @@
     "7  "
   ],
   "key": {
-    "1": "#${dependent}:rhubarb",
+    "1": "#c:rhubarb",
     "2": "minecraft:sugar",
-    "3": "#${dependent}:cinnamon",
-    "4": "#${dependent}:oats",
-    "5": "#${dependent}:flour",
-    "6": "#${dependent}:butters",
-    "7": "#${dependent}:salts"
+    "3": "#c:cinnamon",
+    "4": "#c:oats",
+    "5": "#c:flour",
+    "6": "#c:butters",
+    "7": "#c:salts"
   },
   "result": {
     "id": "croptopia:rhubarb_crisp",

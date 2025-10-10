@@ -5,7 +5,7 @@
     "234"
   ],
   "key": {
-    "1": "#${dependent}:flour",
+    "1": "#c:flour",
     "2": "minecraft:nether_wart",
     "3": "minecraft:crimson_fungus",
     "4": "minecraft:warped_fungus"

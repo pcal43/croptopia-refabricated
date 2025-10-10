@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "1": "#c:milks",
+    "2": "#c:doughs",
+    "3": "minecraft:egg",
+    "4": "#c:butters",
+    "5": "#c:salts",
+    "6": "minecraft:sugar",
+    "7": "#c:cinnamon",
+    "8": "croptopia:whipping_cream",
+    "9": "croptopia:frying_pan"
+  },
+  "pattern": [
+    "123",
+    "456",
+    "798"
+  ],
+  "result": {
+    "count": 3,
+    "id": "croptopia:cinnamon_roll"
+  }
+}

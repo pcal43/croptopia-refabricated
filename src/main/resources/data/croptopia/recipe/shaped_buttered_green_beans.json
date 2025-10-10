@@ -5,10 +5,10 @@
     "123"
   ],
   "key": {
-    "1": "#${dependent}:butters",
-    "2": "#${dependent}:greenbeans",
-    "3": "#${dependent}:gingers",
-    "4": "#${dependent}:salts",
+    "1": "#c:butters",
+    "2": "#c:greenbeans",
+    "3": "#c:gingers",
+    "4": "#c:salts",
     "5": "croptopia:pepper"
   },
   "result": {

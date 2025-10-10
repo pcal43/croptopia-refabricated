@@ -7,7 +7,7 @@
   "key": {
     "1": "minecraft:bread",
     "2": "minecraft:honey_bottle",
-    "3": "#${dependent}:lemons",
+    "3": "#c:lemons",
     "4": "croptopia:whipping_cream"
   },
   "result": {

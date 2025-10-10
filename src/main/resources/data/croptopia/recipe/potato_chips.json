@@ -3,8 +3,8 @@
   "ingredients": [
     "minecraft:potato",
     "croptopia:frying_pan",
-    "#${dependent}:salts",
-    "#${dependent}:olive_oils"
+    "#c:salts",
+    "#c:olive_oils"
   ],
   "result": {
     "id": "croptopia:potato_chips",

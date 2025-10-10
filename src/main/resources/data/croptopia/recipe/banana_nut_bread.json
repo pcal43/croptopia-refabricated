@@ -3,9 +3,9 @@
   "ingredients": [
     "croptopia:cinnamon",
     "minecraft:sugar",
-    "#${dependent}:flour",
-    "#${dependent}:bananas",
-    "#${dependent}:nuts"
+    "#c:flour",
+    "#c:bananas",
+    "#c:nuts"
   ],
   "result": {
     "id": "croptopia:banana_nut_bread",

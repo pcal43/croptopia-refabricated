@@ -8,9 +8,9 @@
   "key": {
     "F": "croptopia:frying_pan",
     "1": "minecraft:potato",
-    "2": "#${dependent}:salts",
+    "2": "#c:salts",
     "3": "croptopia:pepper",
-    "4": "#${dependent}:flour",
+    "4": "#c:flour",
     "5": "#minecraft:fishes"
   },
   "result": {

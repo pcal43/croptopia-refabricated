@@ -328,7 +328,7 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
 
     private ResourceLocation independentTag(String name) {
         IdentifierAccessor accessor = (IdentifierAccessor) Croptopia.createIdentifier(name);
-        accessor.setNamespace("${dependent}"); // lmao
+        accessor.setNamespace("c"); // lmao
         return (ResourceLocation) accessor;
     }
 }

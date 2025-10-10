@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "tag": "${dependent}:chile_peppers"
+            "tag": "c:chile_peppers"
           }
         ]
       }

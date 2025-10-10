@@ -654,7 +654,7 @@ public class CroptopiaRecipeProvider extends FabricRecipeProvider {
 
     public static TagKey<Item> independentTag(String name) {
         IdentifierAccessor accessor = (IdentifierAccessor) Croptopia.createIdentifier(name);
-        accessor.setNamespace("${dependent}"); // lmao
+        accessor.setNamespace("c"); // lmao
         return TagKey.create(Registries.ITEM, (ResourceLocation) accessor);
     }
 
