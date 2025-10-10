@@ -22,7 +22,7 @@ public class AxeMixin {
     @Inject(method = "useOn", at = @At("HEAD"), slice =
     @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/context/UseOnContext;getPlayer()Lnet/minecraft/world/entity/player/Player;"), to = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/world/level/Level;getBlockState(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/state/BlockState;")))
     public void croptopia$use(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        if (context.getLevel().isClientSide)
+        if (context.getLevel().isClientSide())
             return;
         BlockPos pos = context.getClickedPos();
         BlockState state = context.getLevel().getBlockState(pos);
