@@ -1,5 +1,7 @@
 package com.epherical.croptopia;
 
+import java.util.ArrayList;
+
 import com.epherical.croptopia.blocks.LeafCropBlock;
 import com.epherical.croptopia.common.MiscNames;
 import com.epherical.croptopia.common.PlatformAdapter;
@@ -7,6 +9,7 @@ import com.epherical.croptopia.config.CroptopiaConfig;
 import com.epherical.croptopia.config.IdentifierSerializer;
 import com.epherical.croptopia.config.TreeConfiguration;
 import com.epherical.croptopia.register.Composter;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -24,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
-import java.util.ArrayList;
+import static java.util.Objects.requireNonNull;
 
 import static java.util.Objects.requireNonNull;
 
@@ -65,7 +68,7 @@ public record CroptopiaMod(PlatformAdapter<?> platform, CroptopiaConfig config) 
 
     public static BlockBehaviour.Properties createCropSettings(ResourceLocation id) {
         return BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, requireNonNull(id))).
-                mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP);
+                mapColor(MapColor.PLANT).noCollision().randomTicks().instabreak().sound(SoundType.CROP);
     }
 
     public static LeafCropBlock createLeavesBlock(ResourceLocation id) {
@@ -83,7 +86,7 @@ public record CroptopiaMod(PlatformAdapter<?> platform, CroptopiaConfig config) 
 
     public static BlockBehaviour.Properties createSaplingSettings(ResourceLocation id) {
         return BlockBehaviour.Properties.of().setId(ResourceKey.create(Registries.BLOCK, requireNonNull(id))).
-                mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
+                mapColor(MapColor.PLANT).noCollision().randomTicks().instabreak().sound(SoundType.GRASS);
     }
 
     private static boolean never(BlockState state, BlockGetter world, BlockPos pos) {
