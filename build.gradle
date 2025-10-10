@@ -43,15 +43,6 @@ dependencies {
     compileOnlyApi files("jars/EpheroLib-FABRIC-1.2.0-1.21.5.jar")
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    "src/main/generated"
-            ]
-        }
-    }
-}
 
 task sourceJar(type: Jar) {
     archiveClassifier = 'sources'

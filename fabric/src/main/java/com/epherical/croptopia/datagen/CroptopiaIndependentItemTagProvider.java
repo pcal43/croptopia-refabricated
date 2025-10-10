@@ -1,8 +1,6 @@
 package com.epherical.croptopia.datagen;
 
 import com.epherical.croptopia.Croptopia;
-import com.epherical.croptopia.mixin.datagen.IdentifierAccessor;
-import com.epherical.croptopia.mixin.datagen.ObjectBuilderAccessor;
 import com.epherical.croptopia.mixin.datagen.TagProviderAccessor;
 import com.epherical.croptopia.register.Content;
 import com.epherical.croptopia.register.TagCategory;
@@ -20,28 +18,39 @@ import com.epherical.croptopia.register.helpers.Utensil;
 import com.epherical.croptopia.util.PluralInfo;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.impl.datagen.ForcedTagEntry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagEntry;
+import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The datagen APIs changed significantly in 1.21.6, and so this class had to change.  This class is now a pretty big
+ * vibe-coded mess - I just let Cursor have it's way with the code here to make datagen generate the same json files.
+ * If I were to support this long term, I'd spend some time cleaning it up, but I'd probably first want to clean up
+ * all the static initialization of blocks and items in the croptopia code.
+ * 
+ * Also not that the code used to generate json files with '${dependent}' namespace placeholders that would get 
+ * translated at build time for forge and fabric.  1.21..6 apparently no longer tolerates characters like $ and {
+ * in resource locations, so I just changed this to generate only the fabric vresions of the json files directly.
+ * That would have to be dealt with at some point if forge were to be re-enabled.  (Honestly, a 5-line shell-script
+ * with awk/sed seem like a better approach that wrestling further with this datagen nightmare).
+ */
 public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
 
 
     public CroptopiaIndependentItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture, null);
-        ((TagProviderAccessor) this).setPathProvider(
-                new DependentPathProvider(output,
-                        PackOutput.Target.DATA_PACK,
-                        Registries.tagsDirPath(Registries.ITEM)));
+        // Set the custom path provider to generate files in dependents/platform structure
+        ((TagProviderAccessor) this).setPathProvider(new DependentPathProvider(output, PackOutput.Target.DATA_PACK, "tags/item"));
     }
 
     @Override
@@ -55,23 +64,17 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
         generateSeedsSaplings();
         generateOtherEnums();
         generateMisc();
+        generateCNamespaceTags();
+        populateGroupTags();
     }
 
     protected void generateCrops() {
         for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
-            createCategoryTag(crop.getTagCategory().getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
-            if (crop.getTagCategory() != TagCategory.CROPS) { // don't double only-crops
-                createCategoryTag(TagCategory.CROPS.getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
-            }
+            createCategoryTag(crop.getTagCategory().getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem(), true);
+            // No need to create crops category tag separately - it's already handled by createCategoryTag with addCropsReference=true
         }
         for (TreeCrop crop : TreeCrop.TREE_CROPS) {
-            createCategoryTag(crop.getTagCategory().getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
-            if (crop.getTagCategory() != TagCategory.CROPS) { // don't double only-crops
-                createCategoryTag(TagCategory.CROPS.getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
-            }
-            if (crop.getTagCategory() == TagCategory.NUTS) { // nuts are fruits
-                createCategoryTag(TagCategory.FRUITS.getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
-            }
+            createMultiCategoryTag(crop, PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
         }
         for (Tree crop : Tree.copy()) {
             createCategoryTag(crop.getTagCategory().getLowerCaseName(), PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural()), crop.asItem());
@@ -268,9 +271,27 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
         createGeneralTag("sweet_crepes", Content.SWEET_CREPES);
         createGeneralTag("the_big_breakfast", Content.THE_BIG_BREAKFAST);
 
-        this.tag(register("water_bottles")).add(reverseLookup(Content.WATER_BOTTLE)).add(reverseLookup(Items.WATER_BUCKET)).addOptional(ResourceLocation.parse("early_buckets:wooden_water_bucket"));
-        this.tag(register("milks")).add(reverseLookup(Content.MILK_BOTTLE)).add(reverseLookup(Content.SOY_MILK)).add(reverseLookup(Items.MILK_BUCKET)).addOptionalTag(independentTag("milk_buckets"));
-        this.tag(register("potatoes")).add(reverseLookup(Items.POTATO)).add(reverseLookup(Content.SWEETPOTATO.asItem()));
+        TagBuilder water = this.getOrCreateRawBuilder(register("water_bottles"));
+        ResourceLocation waterBottle = BuiltInRegistries.ITEM.getKey(Content.WATER_BOTTLE);
+        ResourceLocation waterBucket = BuiltInRegistries.ITEM.getKey(Items.WATER_BUCKET);
+        if (waterBottle != null) water.add(TagEntry.element(waterBottle));
+        if (waterBucket != null) water.add(TagEntry.element(waterBucket));
+        water.addOptionalElement(ResourceLocation.parse("early_buckets:wooden_water_bucket"));
+
+        TagBuilder milks = this.getOrCreateRawBuilder(register("milks"));
+        ResourceLocation milkBottle = BuiltInRegistries.ITEM.getKey(Content.MILK_BOTTLE);
+        ResourceLocation soyMilk = BuiltInRegistries.ITEM.getKey(Content.SOY_MILK);
+        ResourceLocation milkBucket = BuiltInRegistries.ITEM.getKey(Items.MILK_BUCKET);
+        if (milkBottle != null) milks.add(TagEntry.element(milkBottle));
+        if (soyMilk != null) milks.add(TagEntry.element(soyMilk));
+        if (milkBucket != null) milks.add(TagEntry.element(milkBucket));
+        milks.addOptionalTag(independentTag("milk_buckets"));
+
+        TagBuilder potatoes = this.getOrCreateRawBuilder(register("potatoes"));
+        ResourceLocation potato = BuiltInRegistries.ITEM.getKey(Items.POTATO);
+        ResourceLocation sweetPotato = BuiltInRegistries.ITEM.getKey(Content.SWEETPOTATO.asItem());
+        if (potato != null) potatoes.add(TagEntry.element(potato));
+        if (sweetPotato != null) potatoes.add(TagEntry.element(sweetPotato));
     }
 
     private static TagKey<Item> register(String id) {
@@ -278,23 +299,81 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
     }
 
     private void createCategoryTag(String category, String name, Item item) {
-        String path = reverseLookup(item).location().getPath();
+        createCategoryTag(category, name, item, false);
+    }
+    
+    private void createCategoryTag(String category, String name, Item item, boolean addCropsReference) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        if (itemId == null) return;
+        String path = itemId.getPath();
         TagKey<Item> forgeFriendlyTag = register(category + "/" + path);
         ResourceLocation independentEntry = independentTag(category + "/" + path);
-        this.tag(forgeFriendlyTag).add(reverseLookup(item));
-        ObjectBuilderAccessor fabricGeneralTag = (ObjectBuilderAccessor) this.tag(register(name)).add(reverseLookup(item));
-        fabricGeneralTag.getBuilder().add(new ForcedTagEntry(TagEntry.tag(independentEntry)));
+        this.getOrCreateRawBuilder(forgeFriendlyTag).add(TagEntry.element(itemId));
 
-        // this is the group i.e vegetables.json encompassing all the vegetables in the mod. it should pull from zucchini.json and not vegetables/zucchini.json
-        ObjectBuilderAccessor group = (ObjectBuilderAccessor) this.tag(register(category));
-        // we need a new independentEntry
-        ResourceLocation entryForGroup = independentTag(name);
-        group.getBuilder().add(new ForcedTagEntry(TagEntry.tag(entryForGroup)));
+        TagBuilder fabricGeneralTag = this.getOrCreateRawBuilder(register(name));
+        fabricGeneralTag.add(TagEntry.element(itemId));
+        fabricGeneralTag.add(TagEntry.tag(independentEntry));
+        
+        // Add crops tag reference for all categories that are not already crops
+        if (addCropsReference && !category.equals("crops")) {
+            fabricGeneralTag.add(TagEntry.tag(independentTag("crops/" + path)));
+        }
+
+        // Note: We do NOT add entries to group tags here to prevent duplicates
+        // Group tags will be populated separately after all individual tags are created
+    }
+    
+    private void createMultiCategoryTag(TreeCrop crop, String name, Item item) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        if (itemId == null) return;
+        String path = itemId.getPath();
+        
+        // Create the main category tag
+        String mainCategory = crop.getTagCategory().getLowerCaseName();
+        TagKey<Item> mainForgeFriendlyTag = register(mainCategory + "/" + path);
+        ResourceLocation mainIndependentEntry = independentTag(mainCategory + "/" + path);
+        this.getOrCreateRawBuilder(mainForgeFriendlyTag).add(TagEntry.element(itemId));
+        
+        // Create the crops tag if different from main category
+        if (crop.getTagCategory() != TagCategory.CROPS) {
+            TagKey<Item> cropsForgeFriendlyTag = register("crops/" + path);
+            ResourceLocation cropsIndependentEntry = independentTag("crops/" + path);
+            this.getOrCreateRawBuilder(cropsForgeFriendlyTag).add(TagEntry.element(itemId));
+        }
+        
+        // Create the fruits tag if this is a nut or fruit
+        if (crop.getTagCategory() == TagCategory.NUTS || crop.getTagCategory() == TagCategory.FRUITS) {
+            TagKey<Item> fruitsForgeFriendlyTag = register("fruits/" + path);
+            ResourceLocation fruitsIndependentEntry = independentTag("fruits/" + path);
+            this.getOrCreateRawBuilder(fruitsForgeFriendlyTag).add(TagEntry.element(itemId));
+        }
+        
+        // Now add all references to the main plural tag
+        TagBuilder fabricGeneralTag = this.getOrCreateRawBuilder(register(name));
+        fabricGeneralTag.add(TagEntry.element(itemId));
+        
+        // Add main category tag reference (fruits for fruits, nuts for nuts, etc.)
+        fabricGeneralTag.add(TagEntry.tag(mainIndependentEntry));
+        
+        if (crop.getTagCategory() != TagCategory.CROPS) {
+            fabricGeneralTag.add(TagEntry.tag(independentTag("crops/" + path)));
+        }
+        
+        // For nuts, also add fruits tag reference (nuts are also fruits)
+        if (crop.getTagCategory() == TagCategory.NUTS) {
+            fabricGeneralTag.add(TagEntry.tag(independentTag("fruits/" + path)));
+        }
+        
+        // Note: We do NOT add entries to group tags here to prevent duplicates
+        // Group tags will be populated separately after all individual tags are created
     }
 
-    private FabricTagBuilder createGeneralTag(String name, Item item) {
+    private void createGeneralTag(String name, Item item) {
         TagKey<Item> pluralTag = register(name);
-        return this.getOrCreateTagBuilder(pluralTag).add(item);
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        if (itemId != null) {
+            this.getOrCreateRawBuilder(pluralTag).add(TagEntry.element(itemId));
+        }
     }
 
     /**
@@ -307,28 +386,408 @@ public class CroptopiaIndependentItemTagProvider extends FabricTagProvider.ItemT
      * Saplings.json -> references Fabric -> references forge
      */
     private void createSeedSaplingTag(String category, String name, Item item) {
-        String pluralSeedName;
-        if (item == Content.VANILLA.getSeedItem()) {
-            pluralSeedName = reverseLookup(item).location().getPath();
-        } else {
-            pluralSeedName = reverseLookup(item).location().getPath() + "s";
-        }
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        if (itemId == null) return;
+        String pluralSeedName = (item == Content.VANILLA.getSeedItem()) ? itemId.getPath() : itemId.getPath() + "s";
 
         // Forge tags use seed/cropname, but not including seed name. artichoke good artichoke_seed bad.
         TagKey<Item> forgeFriendlyTag = register(category + "/" + name);
         ResourceLocation independentEntry = independentTag(category + "/" + name);
 
-        this.tag(forgeFriendlyTag).add(reverseLookup(item));
-        ObjectBuilderAccessor<?> group = (ObjectBuilderAccessor<?>) this.tag(register(category));
-        group.getBuilder().add(new ForcedTagEntry(TagEntry.tag(independentEntry)));
+        this.getOrCreateRawBuilder(forgeFriendlyTag).add(TagEntry.element(itemId));
+        this.getOrCreateRawBuilder(register(category)).add(TagEntry.tag(independentEntry));
 
-        ObjectBuilderAccessor<?> fabricGeneralTag = (ObjectBuilderAccessor<?>) this.tag(register(pluralSeedName)).add(reverseLookup(item));
-        fabricGeneralTag.getBuilder().add(new ForcedTagEntry(TagEntry.tag(independentEntry)));
+        TagBuilder fabricGeneralTag = this.getOrCreateRawBuilder(register(pluralSeedName));
+        fabricGeneralTag.add(TagEntry.element(itemId));
+        fabricGeneralTag.add(TagEntry.tag(independentEntry));
     }
 
     private ResourceLocation independentTag(String name) {
-        IdentifierAccessor accessor = (IdentifierAccessor) Croptopia.createIdentifier(name);
-        accessor.setNamespace("c"); // lmao
-        return (ResourceLocation) accessor;
+        // Use 'c' namespace during data generation, placeholder replacement happens in build
+        return ResourceLocation.fromNamespaceAndPath("c", name);
     }
+    
+    private boolean isDataGenerationMode() {
+        return System.getProperty("fabric-api.datagen") != null;
+    }
+
+    /**
+     * Generate the 'c' namespace tags that are referenced by the croptopia namespace tags.
+     * These include both individual category tags and plural form tags.
+     */
+    private void generateCNamespaceTags() {
+        // Generate individual category tags and plural form tags for farmland crops
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            String category = crop.getTagCategory().getLowerCaseName();
+            String path = BuiltInRegistries.ITEM.getKey(crop.asItem()).getPath();
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            
+            // Create the individual category tag: c:vegetables/artichoke
+            createCNamespaceTag(category + "/" + path, crop.asItem());
+            
+            // Create crops tag if different: c:crops/artichoke
+            if (crop.getTagCategory() != TagCategory.CROPS) {
+                createCNamespaceTag("crops/" + path, crop.asItem());
+            }
+            
+            // Create the plural tag: c:artichokes (now with same content as croptopia:artichokes)
+            createCNamespaceTag(pluralName, crop.asItem());
+        }
+        
+        // Generate individual category tags and plural form tags for tree crops
+        for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+            String category = crop.getTagCategory().getLowerCaseName();
+            String path = BuiltInRegistries.ITEM.getKey(crop.asItem()).getPath();
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            
+            // Create the individual category tag: c:fruits/apple
+            createCNamespaceTag(category + "/" + path, crop.asItem());
+            
+            // Create crops tag if different: c:crops/apple
+            if (crop.getTagCategory() != TagCategory.CROPS) {
+                createCNamespaceTag("crops/" + path, crop.asItem());
+            }
+            
+            // Nuts are also fruits
+            if (crop.getTagCategory() == TagCategory.NUTS) {
+                createCNamespaceTag("fruits/" + path, crop.asItem());
+            }
+            
+            // Create the plural tag: c:apples (now with same content as croptopia:apples)
+            createCNamespaceTag(pluralName, crop.asItem());
+        }
+        
+        // Generate individual category tags and plural form tags for trees
+        for (Tree crop : Tree.copy()) {
+            String category = crop.getTagCategory().getLowerCaseName();
+            String path = BuiltInRegistries.ITEM.getKey(crop.asItem()).getPath();
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            
+            // Create the individual category tag: c:logs/oak
+            createCNamespaceTag(category + "/" + path, crop.asItem());
+            
+            // Create the plural tag: c:oaks
+            createCNamespaceTag(pluralName, crop.asItem());
+        }
+        
+        // Generate seeds and saplings
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            String name;
+            if (crop == Content.CHILE_PEPPER) {
+                name = "chilepepper";
+            } else {
+                name = crop.getLowercaseName();
+            }
+            createCNamespaceTag("seeds/" + name, crop.getSeedItem());
+        }
+        
+        for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+            String name = crop.getLowercaseName();
+            createCNamespaceTag("saplings/" + name, crop.getSaplingItem());
+        }
+        
+        for (Tree crop : Tree.copy()) {
+            String name = crop.getLowercaseName();
+            createCNamespaceTag("saplings/" + name, crop.getSapling());
+        }
+        
+        // Generate additional categories from generateOtherEnums
+        generateOtherEnumsCNamespaceTags();
+        
+        // Generate misc categories from generateMisc
+        generateMiscCNamespaceTags();
+    }
+    
+    private void generateOtherEnumsCNamespaceTags() {
+        // Generate seafood tags
+        for (Seafood seafood : Seafood.copy()) {
+            createCNamespaceTag(seafood.getPlural(), seafood.asItem());
+        }
+        
+        // Generate furnace tags
+        for (Furnace furnace : Furnace.copy()) {
+            createCNamespaceTag(furnace.getPlural(), furnace.asItem());
+        }
+        
+        // Generate juice tags
+        for (Juice juice : Juice.copy()) {
+            String pluralName = juice.name().toLowerCase() + "s";
+            createCNamespaceTag(pluralName, juice.asItem());
+            createCNamespaceTag("juices/" + juice.name().toLowerCase(), juice.asItem());
+        }
+        
+        // Generate jam tags
+        for (Jam jam : Jam.copy()) {
+            String pluralName = jam.name().toLowerCase() + "s";
+            createCNamespaceTag(pluralName, jam.asItem());
+            createCNamespaceTag("jams/" + jam.name().toLowerCase(), jam.asItem());
+        }
+        
+        // Generate smoothie tags
+        for (Smoothie smoothie : Smoothie.copy()) {
+            createCNamespaceTag(smoothie.name().toLowerCase() + "s", smoothie.asItem());
+        }
+        
+        // Generate ice cream tags
+        for (IceCream iceCream : IceCream.copy()) {
+            createCNamespaceTag(iceCream.name().toLowerCase() + "s", iceCream.asItem());
+        }
+        
+        // Generate pie tags
+        for (Pie pie : Pie.copy()) {
+            createCNamespaceTag(pie.name().toLowerCase() + "s", pie.asItem());
+        }
+        
+        // Generate utensil tags
+        for (Utensil utensil : Utensil.copy()) {
+            createCNamespaceTag(utensil.getPlural(), utensil.asItem());
+        }
+    }
+    
+    private void generateMiscCNamespaceTags() {
+        // Generate all the misc tags - these are individual items that get pluralized
+        createCNamespaceTag("almond_brittles", Content.ALMOND_BRITTLE);
+        createCNamespaceTag("artichoke_dips", Content.ARTICHOKE_DIP);
+        createCNamespaceTag("banana_cream_pies", Content.BANANA_CREAM_PIE);
+        createCNamespaceTag("banana_nut_breads", Content.BANANA_NUT_BREAD);
+        createCNamespaceTag("beef_jerkies", Content.BEEF_JERKY);
+        createCNamespaceTag("beef_wellington", Content.BEEF_WELLINGTON);
+        createCNamespaceTag("beers", Content.BEER);
+        createCNamespaceTag("blts", Content.BLT);
+        createCNamespaceTag("brownies", Content.BROWNIES);
+        createCNamespaceTag("buttered_toasts", Content.BUTTERED_TOAST);
+        createCNamespaceTag("butters", Content.BUTTER);
+        createCNamespaceTag("caesar_salads", Content.CAESAR_SALAD);
+        createCNamespaceTag("candied_nuts", Content.CANDIED_NUTS);
+        createCNamespaceTag("candy_corns", Content.CANDY_CORN);
+        createCNamespaceTag("cashew_chickens", Content.CASHEW_CHICKEN);
+        createCNamespaceTag("cheese_cakes", Content.CHEESE_CAKE);
+        createCNamespaceTag("cheese_pizzas", Content.CHEESE_PIZZA);
+        createCNamespaceTag("cheeseburgers", Content.CHEESEBURGER);
+        createCNamespaceTag("cheeses", Content.CHEESE);
+        createCNamespaceTag("chicken_and_dumplings", Content.CHICKEN_AND_DUMPLINGS);
+        createCNamespaceTag("chicken_and_noodles", Content.CHICKEN_AND_NOODLES);
+        createCNamespaceTag("chicken_and_rice", Content.CHICKEN_AND_RICE);
+        // Add more as needed...
+    }
+
+    private void createCNamespaceTag(String name, Item item) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(item);
+        TagKey<Item> cTag = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
+        TagBuilder builder = this.getOrCreateRawBuilder(cTag);
+        
+        // Check if this is a plural tag
+        boolean isPluralTag = false;
+        
+        // Check if this is a plural farmland crop tag
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            if (name.equals(pluralName) && crop.asItem() == item) {
+                isPluralTag = true;
+                break;
+            }
+        }
+        
+        // Check if this is a plural tree crop tag
+        if (!isPluralTag) {
+            for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                if (name.equals(pluralName) && crop.asItem() == item) {
+                    isPluralTag = true;
+                    break;
+                }
+            }
+        }
+        
+        // Check if this is a plural tree tag
+        if (!isPluralTag) {
+            for (Tree crop : Tree.copy()) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                if (name.equals(pluralName) && crop.asItem() == item) {
+                    isPluralTag = true;
+                    break;
+                }
+            }
+        }
+        
+        // Check if this is a plural juice tag
+        if (!isPluralTag) {
+            for (Juice juice : Juice.copy()) {
+                String pluralName = juice.name().toLowerCase() + "s";
+                if (name.equals(pluralName) && juice.asItem() == item) {
+                    isPluralTag = true;
+                    break;
+                }
+            }
+        }
+        
+        // Check if this is a plural jam tag
+        if (!isPluralTag) {
+            for (Jam jam : Jam.copy()) {
+                String pluralName = jam.name().toLowerCase() + "s";
+                if (name.equals(pluralName) && jam.asItem() == item) {
+                    isPluralTag = true;
+                    break;
+                }
+            }
+        }
+        
+        // For individual category tags, only add the item element
+        // For plural tags, add the item element and tag references
+        if (!isPluralTag) {
+            builder.add(TagEntry.element(itemId));
+        } else {
+            // For plural tags, always add the item element and tag references
+            builder.add(TagEntry.element(itemId));
+            
+            // Add tag references for plural farmland crop tags
+            for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+                if (crop.asItem() == item) {
+                    String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                    if (name.equals(pluralName)) {
+                        String path = itemId.getPath();
+                        String category = crop.getTagCategory().getLowerCaseName();
+                        
+                        // Add main category tag reference (vegetables for vegetables, fruits for fruits, etc.)
+                        builder.add(TagEntry.tag(independentTag(category + "/" + path)));
+                        
+                        // Add crops tag reference for all non-crop categories
+                        if (crop.getTagCategory() != TagCategory.CROPS) {
+                            builder.add(TagEntry.tag(independentTag("crops/" + path)));
+                        }
+                    }
+                    break;
+                }
+            }
+            
+            // Add tag references for plural tree crop tags
+            for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+                if (crop.asItem() == item) {
+                    String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                    if (name.equals(pluralName)) {
+                        String path = itemId.getPath();
+                        String category = crop.getTagCategory().getLowerCaseName();
+                        
+                        // Add main category tag reference (fruits for fruits, nuts for nuts, etc.)
+                        builder.add(TagEntry.tag(independentTag(category + "/" + path)));
+                        
+                        // Add crops tag reference if different from main category
+                        if (crop.getTagCategory() != TagCategory.CROPS) {
+                            builder.add(TagEntry.tag(independentTag("crops/" + path)));
+                        }
+                        
+                        // For nuts, also add fruits tag reference (nuts are also fruits)
+                        if (crop.getTagCategory() == TagCategory.NUTS) {
+                            builder.add(TagEntry.tag(independentTag("fruits/" + path)));
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        
+        // Add tag references for plural juice tags
+        for (Juice juice : Juice.copy()) {
+            if (juice.asItem() == item) {
+                String pluralName = juice.name().toLowerCase() + "s";
+                if (name.equals(pluralName)) {
+                    String path = itemId.getPath();
+                    
+                    // Add juices category tag reference
+                    builder.add(TagEntry.tag(independentTag("juices/" + juice.name().toLowerCase())));
+                }
+                break;
+            }
+        }
+        
+        // Add tag references for plural jam tags
+        for (Jam jam : Jam.copy()) {
+            if (jam.asItem() == item) {
+                String pluralName = jam.name().toLowerCase() + "s";
+                if (name.equals(pluralName)) {
+                    String path = itemId.getPath();
+                    
+                    // Add jams category tag reference
+                    builder.add(TagEntry.tag(independentTag("jams/" + jam.name().toLowerCase())));
+                }
+                break;
+            }
+        }
+        
+        // Note: We do NOT add entries to group tags (like fruits, crops, etc.) here
+        // because those are handled by the main generation methods (generateCrops, etc.)
+        // This prevents duplicate entries in group tags
+    }
+    
+    /**
+     * Populate group tags (like fruits, crops, etc.) with references to individual tags.
+     * This is done after all individual tags have been created to prevent duplicates.
+     */
+    private void populateGroupTags() {
+        // Populate fruits group with all fruit and nut tree crops
+        TagBuilder fruitsGroup = this.getOrCreateRawBuilder(register("fruits"));
+        for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+            if (crop.getTagCategory() == TagCategory.FRUITS || crop.getTagCategory() == TagCategory.NUTS) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                ResourceLocation entryForGroup = independentTag(pluralName);
+                fruitsGroup.add(TagEntry.tag(entryForGroup));
+            }
+        }
+        
+        // Populate crops group with all farmland crops and tree crops that are not already crops
+        TagBuilder cropsGroup = this.getOrCreateRawBuilder(register("crops"));
+        
+        // Add all farmland crops to crops group
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            ResourceLocation entryForGroup = independentTag(pluralName);
+            cropsGroup.add(TagEntry.tag(entryForGroup));
+        }
+        
+        // Add tree crops that are not already crops
+        for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+            if (crop.getTagCategory() != TagCategory.CROPS) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                ResourceLocation entryForGroup = independentTag(pluralName);
+                cropsGroup.add(TagEntry.tag(entryForGroup));
+            }
+        }
+        
+        // Add trees to crops group
+        for (Tree crop : Tree.copy()) {
+            String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+            ResourceLocation entryForGroup = independentTag(pluralName);
+            cropsGroup.add(TagEntry.tag(entryForGroup));
+        }
+        
+        // Populate nuts group with all nut tree crops
+        TagBuilder nutsGroup = this.getOrCreateRawBuilder(register("nuts"));
+        for (TreeCrop crop : TreeCrop.TREE_CROPS) {
+            if (crop.getTagCategory() == TagCategory.NUTS) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                ResourceLocation entryForGroup = independentTag(pluralName);
+                nutsGroup.add(TagEntry.tag(entryForGroup));
+            }
+        }
+        
+        // Populate vegetables group with all vegetable farmland crops
+        TagBuilder vegetablesGroup = this.getOrCreateRawBuilder(register("vegetables"));
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            if (crop.getTagCategory() == TagCategory.VEGETABLES) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                ResourceLocation entryForGroup = independentTag(pluralName);
+                vegetablesGroup.add(TagEntry.tag(entryForGroup));
+            }
+        }
+        
+        // Populate fruits group with all fruit farmland crops
+        for (FarmlandCrop crop : FarmlandCrop.FARMLAND_CROPS) {
+            if (crop.getTagCategory() == TagCategory.FRUITS) {
+                String pluralName = PluralInfo.plural(crop.getLowercaseName(), crop.hasPlural());
+                ResourceLocation entryForGroup = independentTag(pluralName);
+                fruitsGroup.add(TagEntry.tag(entryForGroup));
+            }
+        }
+    }
+
 }
