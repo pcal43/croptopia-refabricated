@@ -46,10 +46,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.17.0",
-    "fabric-api": ">=0.116.0",
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": ">=${fabric_version}",
     "fabric-biome-api-v1": ">=3.0.0",
-    "minecraft": ">=1.21.1"
+    "minecraft": ">=${minecraft_version}"
   },
   "suggests": {
     "patchouli": "*",

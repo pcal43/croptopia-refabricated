@@ -52,7 +52,7 @@ dependencies {
     modCompileOnly "vazkii.patchouli:Patchouli:1.20.1-84-FABRIC-SNAPSHOT",{
         exclude(group: "net.fabricmc.fabric-api")
     }
-    modCompileOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}",{
+    modCompileOnly "com.terraformersmc:modmenu:7.2.2",{
         exclude(group: "net.fabricmc.fabric-api")
     }
 
@@ -94,16 +94,22 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include "fabric.mod.json"
+        var templateProperties = rootProject.properties.clone()
         // This little horror allows us to have our published modid be 'croptopia-refabricated' while still using datagen to
         // generate resources in the 'croptopia' namespace.  Fabric really doesn't want us to do that, which I guess
         // is sort of understandable, but in our case, given the temporary nature of this codebase, it seems like
         // a reasonable thing to want to do.  This is a little fragile, and it only works because we do runData as a
         // development operation, not as part of the release build.
         def isDatagenBuild = gradle.startParameter.taskNames.contains(":fabric:runData") || gradle.startParameter.taskNames.contains("runData")
-        def modId = isDatagenBuild ? "croptopia" : "croptopia-refabricated"
-        expand "mod_version": rootProject.version, "mod_id": modId
+        templateProperties.mod_id = isDatagenBuild ? "croptopia" : "croptopia-refabricated"
+        expand(templateProperties)
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    }
+     }
+
+    //from(sourceSets.main.resources.srcDirs) {
+    //    include('**/data/croptopia/recipes/**')
+    //    expand "dependent": "c"
+    //}
 
 
     //from(sourceSets.main.resources.srcDirs) {

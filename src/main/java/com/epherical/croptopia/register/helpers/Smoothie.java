@@ -7,6 +7,7 @@ import com.epherical.croptopia.util.ItemConvertibleWithPlural;
 import com.epherical.croptopia.util.RegisterFunction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.ItemLike;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class Smoothie implements ItemLike {
     }
 
     public void registerItems(RegisterFunction<Item> register) {
-        item = register.register(CroptopiaMod.createIdentifier(name),  () -> new Drink(createGroup().food(createBuilder(JUICE_5).alwaysEdible().build()).craftRemainder(Items.GLASS_BOTTLE)));
+        item = register.register(CroptopiaMod.createIdentifier(name),  id -> new Drink(createGroup(id).food(createBuilder(JUICE_5).alwaysEdible().build(), Consumables.DEFAULT_DRINK).craftRemainder(Items.GLASS_BOTTLE)));
     }
 
     public static List<Smoothie> copy() {

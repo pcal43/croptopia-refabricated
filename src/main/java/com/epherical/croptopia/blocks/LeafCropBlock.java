@@ -15,6 +15,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -57,10 +58,12 @@ public class LeafCropBlock extends CroptopiaCropBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess st,
+                                  BlockPos pos, Direction direction,BlockPos neighborPos, BlockState neighborState, RandomSource r) {
+
         int distance = getDistanceFromLog(neighborState) + 1;
         if (distance != 1 || state.getValue(DISTANCE) != distance) {
-            world.scheduleTick(pos, this, 1);
+            st.scheduleTick(pos, this, 1);
         }
 
         return state;
@@ -133,7 +136,7 @@ public class LeafCropBlock extends CroptopiaCropBlock {
     }
 
     @Override
-    public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
+    public int getLightBlock(BlockState state) {
         return 1;
     }
 
