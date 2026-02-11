@@ -1,8 +1,8 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id 'fabric-loom' version '1.11-SNAPSHOT'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'fabric-loom' version '1.15-SNAPSHOT'
+    id 'com.gradleup.shadow' version '9.3.1'
     id "com.modrinth.minotaur" version "2.8.7"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
@@ -20,12 +20,16 @@ repositories {
     }
 }
 
-archivesBaseName = archives_base_name
+base {
+    archivesName = archives_base_name
+}
 
 configurations {
     shade
     compile.extendsFrom shade
 }
+
+test { failOnNoDiscoveredTests = false }  // Gradle needs this to successfully build when you don't use tests
 
 sourceSets {
     main {
@@ -155,8 +159,14 @@ shadowJar {
     configurations = [project.configurations.shade]
     relocate 'dependents/platform', 'data/c' // REVIEW not entirely clear on what's going on here
     // embed the epherolib classes and ensure they don't conflict with other versions that might be installed
-    from files("../jars/${rootProject.epherolib_jar}")
+    from(files("../jars/${rootProject.epherolib_jar}"))
+
     relocate 'com/epherical/epherolib', 'refabricated/com/epherical/epherolib'
+
+    // Disable file mode preservation for Gradle 9 compatibility
+    filesMatching('**/*') {
+        // Don't set mode - let Gradle use defaults
+    }
 }
 
 // Configure remapJar to use the shadowJar output

@@ -11,7 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
@@ -215,19 +215,19 @@ public class WorldGenFeatures {
         return new ConfiguredFeature<>(feature, config);
     }
 
-    public static Holder<PlacedFeature> register(ResourceLocation id, ConfiguredFeature<?, ?> holder, List<PlacementModifier> modifiers) {
+    public static Holder<PlacedFeature> register(Identifier id, ConfiguredFeature<?, ?> holder, List<PlacementModifier> modifiers) {
         ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE, id);
         return register(key, holder, modifiers);
     }
 
     public static Holder<PlacedFeature> register(ResourceKey<PlacedFeature> key, ConfiguredFeature<?, ?> holder, List<PlacementModifier> modifiers) {
-        keyMap.put(key.location().getPath(), key);
+        keyMap.put(key.identifier().getPath(), key);
         Holder<PlacedFeature> direct = Holder.direct(new PlacedFeature(Holder.direct(holder), modifiers));
         datagenModifierLists.put(key, modifiers);
         return direct;
     }
 
-    public static Holder<PlacedFeature> register(ResourceLocation id, ConfiguredFeature<?, ?> feature, PlacementModifier... modifiers) {
+    public static Holder<PlacedFeature> register(Identifier id, ConfiguredFeature<?, ?> feature, PlacementModifier... modifiers) {
         return register(id, feature, List.of(modifiers));
     }
 
@@ -243,7 +243,7 @@ public class WorldGenFeatures {
         return register(key, tree.getTreeGen(), List.of(modifiers));
     }
 
-    public static Holder<PlacedFeature> register(ResourceLocation id, TreeCrop crop, PlacementModifier... modifiers) {
+    public static Holder<PlacedFeature> register(Identifier id, TreeCrop crop, PlacementModifier... modifiers) {
         return register(id, crop.getTreeConfig(), List.of(modifiers));
     }
 

@@ -2,7 +2,7 @@ package com.epherical.croptopia.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.nio.file.Path;
 
@@ -17,14 +17,14 @@ public class DependentPathProvider extends PackOutput.PathProvider {
     }
 
     @Override
-    public Path file(ResourceLocation resourceLocation, String string) {
+    public Path file(Identifier Identifier, String string) {
         Path type = this.root.resolve(this.kindCopy);
-        String path = resourceLocation.getPath();
+        String path = Identifier.getPath();
         return type.resolve(path + "." + string);
     }
 
     @Override
-    public Path json(ResourceLocation resourceLocation) {
-        return this.root.resolve(this.kindCopy).resolve(resourceLocation.getPath() + ".json");
+    public Path json(Identifier Identifier) {
+        return this.root.resolve(this.kindCopy).resolve(Identifier.getPath() + ".json");
     }
 }

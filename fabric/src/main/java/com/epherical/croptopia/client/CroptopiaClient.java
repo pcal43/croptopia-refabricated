@@ -21,6 +21,6 @@ public class CroptopiaClient implements ClientModInitializer {
     }
 
     public void registerCropBlockLayer(Block block) {
-        BlockRenderLayerMap.putBlock(block, ChunkSectionLayer.CUTOUT_MIPPED);
+        BlockRenderLayerMap.putBlock(block, ChunkSectionLayer.CUTOUT);
     }
 }

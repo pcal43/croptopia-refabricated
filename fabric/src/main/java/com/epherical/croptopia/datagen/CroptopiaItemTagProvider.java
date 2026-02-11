@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.tags.TagEntry;
@@ -37,7 +37,7 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
     protected void generateSeedsEatenByTag(TagKey<Item> key) {
         TagBuilder builder = this.getOrCreateRawBuilder(key);
         for (Item seed : CroptopiaMod.seeds) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(seed);
+            Identifier id = BuiltInRegistries.ITEM.getKey(seed);
             if (id != null) builder.add(TagEntry.element(id));
         }
     }
@@ -46,11 +46,11 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
     protected void generateSaplings() {
         TagBuilder saplings = this.getOrCreateRawBuilder(ItemTags.SAPLINGS);
         for (TreeCrop crop : TreeCrop.copy()) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(crop.getSaplingItem());
+            Identifier id = BuiltInRegistries.ITEM.getKey(crop.getSaplingItem());
             if (id != null) saplings.add(TagEntry.element(id));
         }
         for (Tree crop : Tree.copy()) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(crop.getSapling());
+            Identifier id = BuiltInRegistries.ITEM.getKey(crop.getSapling());
             if (id != null) saplings.add(TagEntry.element(id));
         }
     }
@@ -58,10 +58,10 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
     protected void generateBarkLogs() {
         for (Tree crop : Tree.copy()) {
             TagBuilder treeLogs = this.getOrCreateRawBuilder(crop.getLogItemTag());
-            ResourceLocation log = BuiltInRegistries.ITEM.getKey(crop.getLog().asItem());
-            ResourceLocation sLog = BuiltInRegistries.ITEM.getKey(crop.getStrippedLog().asItem());
-            ResourceLocation wood = BuiltInRegistries.ITEM.getKey(crop.getWood().asItem());
-            ResourceLocation sWood = BuiltInRegistries.ITEM.getKey(crop.getStrippedWood().asItem());
+            Identifier log = BuiltInRegistries.ITEM.getKey(crop.getLog().asItem());
+            Identifier sLog = BuiltInRegistries.ITEM.getKey(crop.getStrippedLog().asItem());
+            Identifier wood = BuiltInRegistries.ITEM.getKey(crop.getWood().asItem());
+            Identifier sWood = BuiltInRegistries.ITEM.getKey(crop.getStrippedWood().asItem());
             if (log != null) treeLogs.add(TagEntry.element(log));
             if (sLog != null) treeLogs.add(TagEntry.element(sLog));
             if (wood != null) treeLogs.add(TagEntry.element(wood));
@@ -75,11 +75,11 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
     protected void generateLeaves() {
         TagBuilder leaves = this.getOrCreateRawBuilder(ItemTags.LEAVES);
         for (TreeCrop crop : TreeCrop.copy()) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(crop.getLeaves().asItem());
+            Identifier id = BuiltInRegistries.ITEM.getKey(crop.getLeaves().asItem());
             if (id != null) leaves.add(TagEntry.element(id));
         }
         for (Tree crop : Tree.copy()) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(crop.getLeaves().asItem());
+            Identifier id = BuiltInRegistries.ITEM.getKey(crop.getLeaves().asItem());
             if (id != null) leaves.add(TagEntry.element(id));
         }
     }
@@ -87,20 +87,20 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
     protected void generateMisc() {
         TagBuilder villagerSeeds = this.getOrCreateRawBuilder(ItemTags.VILLAGER_PLANTABLE_SEEDS);
         for (Item seed : CroptopiaMod.seeds) {
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(seed);
+            Identifier id = BuiltInRegistries.ITEM.getKey(seed);
             if (id != null) villagerSeeds.add(TagEntry.element(id));
         }
         // explicitly used as dolphin food in vanilla
         TagBuilder fishes = this.getOrCreateRawBuilder(ItemTags.FISHES);
-        ResourceLocation anchovy = BuiltInRegistries.ITEM.getKey(Content.ANCHOVY.asItem());
-        ResourceLocation calamari = BuiltInRegistries.ITEM.getKey(Content.CALAMARI.asItem());
-        ResourceLocation gcalamari = BuiltInRegistries.ITEM.getKey(Content.GLOWING_CALAMARI.asItem());
-        ResourceLocation clam = BuiltInRegistries.ITEM.getKey(Content.CLAM.asItem());
-        ResourceLocation crab = BuiltInRegistries.ITEM.getKey(Content.CRAB.asItem());
-        ResourceLocation oyster = BuiltInRegistries.ITEM.getKey(Content.OYSTER.asItem());
-        ResourceLocation roe = BuiltInRegistries.ITEM.getKey(Content.ROE.asItem());
-        ResourceLocation shrimp = BuiltInRegistries.ITEM.getKey(Content.SHRIMP.asItem());
-        ResourceLocation tuna = BuiltInRegistries.ITEM.getKey(Content.TUNA.asItem());
+        Identifier anchovy = BuiltInRegistries.ITEM.getKey(Content.ANCHOVY.asItem());
+        Identifier calamari = BuiltInRegistries.ITEM.getKey(Content.CALAMARI.asItem());
+        Identifier gcalamari = BuiltInRegistries.ITEM.getKey(Content.GLOWING_CALAMARI.asItem());
+        Identifier clam = BuiltInRegistries.ITEM.getKey(Content.CLAM.asItem());
+        Identifier crab = BuiltInRegistries.ITEM.getKey(Content.CRAB.asItem());
+        Identifier oyster = BuiltInRegistries.ITEM.getKey(Content.OYSTER.asItem());
+        Identifier roe = BuiltInRegistries.ITEM.getKey(Content.ROE.asItem());
+        Identifier shrimp = BuiltInRegistries.ITEM.getKey(Content.SHRIMP.asItem());
+        Identifier tuna = BuiltInRegistries.ITEM.getKey(Content.TUNA.asItem());
         if (anchovy != null) fishes.add(TagEntry.element(anchovy));
         if (calamari != null) fishes.add(TagEntry.element(calamari));
         if (gcalamari != null) fishes.add(TagEntry.element(gcalamari));
@@ -112,12 +112,12 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
         if (tuna != null) fishes.add(TagEntry.element(tuna));
         // fox food: all berries added by croptopia
         TagBuilder foxFood = this.getOrCreateRawBuilder(ItemTags.FOX_FOOD);
-        ResourceLocation blackberry = BuiltInRegistries.ITEM.getKey(Content.BLACKBERRY.asItem());
-        ResourceLocation blueberry = BuiltInRegistries.ITEM.getKey(Content.BLUEBERRY.asItem());
-        ResourceLocation cranberry = BuiltInRegistries.ITEM.getKey(Content.CRANBERRY.asItem());
-        ResourceLocation elderberry = BuiltInRegistries.ITEM.getKey(Content.ELDERBERRY.asItem());
-        ResourceLocation raspberry = BuiltInRegistries.ITEM.getKey(Content.RASPBERRY.asItem());
-        ResourceLocation strawberry = BuiltInRegistries.ITEM.getKey(Content.STRAWBERRY.asItem());
+        Identifier blackberry = BuiltInRegistries.ITEM.getKey(Content.BLACKBERRY.asItem());
+        Identifier blueberry = BuiltInRegistries.ITEM.getKey(Content.BLUEBERRY.asItem());
+        Identifier cranberry = BuiltInRegistries.ITEM.getKey(Content.CRANBERRY.asItem());
+        Identifier elderberry = BuiltInRegistries.ITEM.getKey(Content.ELDERBERRY.asItem());
+        Identifier raspberry = BuiltInRegistries.ITEM.getKey(Content.RASPBERRY.asItem());
+        Identifier strawberry = BuiltInRegistries.ITEM.getKey(Content.STRAWBERRY.asItem());
         if (blackberry != null) foxFood.add(TagEntry.element(blackberry));
         if (blueberry != null) foxFood.add(TagEntry.element(blueberry));
         if (cranberry != null) foxFood.add(TagEntry.element(cranberry));
@@ -126,12 +126,12 @@ public class CroptopiaItemTagProvider extends FabricTagProvider.ItemTagProvider 
         if (strawberry != null) foxFood.add(TagEntry.element(strawberry));
         // piglin food: more cannibalism (which already happens in vanilla)
         TagBuilder piglinFood = this.getOrCreateRawBuilder(ItemTags.PIGLIN_FOOD);
-        ResourceLocation hamSandwich = BuiltInRegistries.ITEM.getKey(Content.HAM_SANDWICH);
-        ResourceLocation pepperoni = BuiltInRegistries.ITEM.getKey(Content.PEPPERONI);
-        ResourceLocation porkAndBeans = BuiltInRegistries.ITEM.getKey(Content.PORK_AND_BEANS);
-        ResourceLocation porkJerky = BuiltInRegistries.ITEM.getKey(Content.PORK_JERKY);
-        ResourceLocation rawBacon = BuiltInRegistries.ITEM.getKey(Content.RAW_BACON);
-        ResourceLocation cookedBacon = BuiltInRegistries.ITEM.getKey(Content.COOKED_BACON.asItem());
+        Identifier hamSandwich = BuiltInRegistries.ITEM.getKey(Content.HAM_SANDWICH);
+        Identifier pepperoni = BuiltInRegistries.ITEM.getKey(Content.PEPPERONI);
+        Identifier porkAndBeans = BuiltInRegistries.ITEM.getKey(Content.PORK_AND_BEANS);
+        Identifier porkJerky = BuiltInRegistries.ITEM.getKey(Content.PORK_JERKY);
+        Identifier rawBacon = BuiltInRegistries.ITEM.getKey(Content.RAW_BACON);
+        Identifier cookedBacon = BuiltInRegistries.ITEM.getKey(Content.COOKED_BACON.asItem());
         if (hamSandwich != null) piglinFood.add(TagEntry.element(hamSandwich));
         if (pepperoni != null) piglinFood.add(TagEntry.element(pepperoni));
         if (porkAndBeans != null) piglinFood.add(TagEntry.element(porkAndBeans));
@@ -255,7 +255,7 @@ Now let me test if this approach works:
 
 [1 tool called]
 
-I need to use the correct way to create a ResourceLocation. Let me fix that:
+I need to use the correct way to create a Identifier. Let me fix that:
 
 
 [1 tool called]
@@ -271,7 +271,7 @@ Perfect! Now I can see the real issue. The error is:
 Non [a-z0-9_.-] character in namespace of location: ${dependent}:vegetables/artichoke
 ```
 
-The `${dependent}` namespace contains `$` and `{` characters which are not allowed in ResourceLocation namespaces. This confirms that **the original working approach relied on `ForcedTagEntry` to bypass this validation**, but that class no longer exists.
+The `${dependent}` namespace contains `$` and `{` characters which are not allowed in Identifier namespaces. This confirms that **the original working approach relied on `ForcedTagEntry` to bypass this validation**, but that class no longer exists.
 
 The solution is to **not register the `${dependent}` tags at all**, but instead **avoid creating references to them during data generation**. This is exactly what our conditional approach was doing!
 
@@ -280,7 +280,7 @@ Let me revert to the conditional approach and mark the todo as completed:
 
 [1 tool called]
 
-The key insight is that **the `${dependent}` namespace is invalid for ResourceLocation**, so we can't register tags with that namespace. The original working approach used `ForcedTagEntry` to bypass this validation, but that class no longer exists.
+The key insight is that **the `${dependent}` namespace is invalid for Identifier**, so we can't register tags with that namespace. The original working approach used `ForcedTagEntry` to bypass this validation, but that class no longer exists.
 
 The solution is to **use the conditional approach** that we had working before - avoid creating `${dependent}` references during data generation and use direct `croptopia:` references instead.
 
@@ -328,12 +328,12 @@ Excellent! Both files now contain the correct `#croptopia:` references. Let me u
 
 **Problem Solved!** 🎉
 
-The issue was that **the original working approach relied on `ForcedTagEntry` to bypass validation**, but that class no longer exists in the current Fabric version. The `${dependent}` namespace is also invalid for ResourceLocation because it contains `$` and `{` characters.
+The issue was that **the original working approach relied on `ForcedTagEntry` to bypass validation**, but that class no longer exists in the current Fabric version. The `${dependent}` namespace is also invalid for Identifier because it contains `$` and `{` characters.
 
 **Root Cause:**
 - The original working code used `ForcedTagEntry` to bypass tag reference validation
 - `ForcedTagEntry` no longer exists in the current Fabric API
-- The `${dependent}` namespace is invalid for ResourceLocation (contains `$` and `{` characters)
+- The `${dependent}` namespace is invalid for Identifier (contains `$` and `{` characters)
 - Minecraft 1.21.6 now validates tag references during data generation
 
 **Solution:**
@@ -463,7 +463,7 @@ Now let me test if this approach works:
 
 [1 tool called]
 
-I need to use the correct way to create a ResourceLocation. Let me fix that:
+I need to use the correct way to create a Identifier. Let me fix that:
 
 
 [1 tool called]
@@ -479,7 +479,7 @@ Perfect! Now I can see the real issue. The error is:
 Non [a-z0-9_.-] character in namespace of location: ${dependent}:vegetables/artichoke
 ```
 
-The `${dependent}` namespace contains `$` and `{` characters which are not allowed in ResourceLocation namespaces. This confirms that **the original working approach relied on `ForcedTagEntry` to bypass this validation**, but that class no longer exists.
+The `${dependent}` namespace contains `$` and `{` characters which are not allowed in Identifier namespaces. This confirms that **the original working approach relied on `ForcedTagEntry` to bypass this validation**, but that class no longer exists.
 
 The solution is to **not register the `${dependent}` tags at all**, but instead **avoid creating references to them during data generation**. This is exactly what our conditional approach was doing!
 
@@ -488,7 +488,7 @@ Let me revert to the conditional approach and mark the todo as completed:
 
 [1 tool called]
 
-The key insight is that **the `${dependent}` namespace is invalid for ResourceLocation**, so we can't register tags with that namespace. The original working approach used `ForcedTagEntry` to bypass this validation, but that class no longer exists.
+The key insight is that **the `${dependent}` namespace is invalid for Identifier**, so we can't register tags with that namespace. The original working approach used `ForcedTagEntry` to bypass this validation, but that class no longer exists.
 
 The solution is to **use the conditional approach** that we had working before - avoid creating `${dependent}` references during data generation and use direct `croptopia:` references instead.
 
@@ -536,12 +536,12 @@ Excellent! Both files now contain the correct `#croptopia:` references. Let me u
 
 **Problem Solved!** 🎉
 
-The issue was that **the original working approach relied on `ForcedTagEntry` to bypass validation**, but that class no longer exists in the current Fabric version. The `${dependent}` namespace is also invalid for ResourceLocation because it contains `$` and `{` characters.
+The issue was that **the original working approach relied on `ForcedTagEntry` to bypass validation**, but that class no longer exists in the current Fabric version. The `${dependent}` namespace is also invalid for Identifier because it contains `$` and `{` characters.
 
 **Root Cause:**
 - The original working code used `ForcedTagEntry` to bypass tag reference validation
 - `ForcedTagEntry` no longer exists in the current Fabric API
-- The `${dependent}` namespace is invalid for ResourceLocation (contains `$` and `{` characters)
+- The `${dependent}` namespace is invalid for Identifier (contains `$` and `{` characters)
 - Minecraft 1.21.6 now validates tag references during data generation
 
 **Solution:**

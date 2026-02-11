@@ -9,7 +9,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.TreeMultimap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -293,11 +293,11 @@ public class CroptopiaConfig extends CommonConfig {
         }
     }
 
-    private static ResourceLocation travID(String name) {
-        return ResourceLocation.fromNamespaceAndPath("traverse", name);
+    private static Identifier travID(String name) {
+        return Identifier.fromNamespaceAndPath("traverse", name);
     }
 
-    private static ResourceLocation bygID(String name) {
-        return ResourceLocation.fromNamespaceAndPath("byg", name);
+    private static Identifier bygID(String name) {
+        return Identifier.fromNamespaceAndPath("byg", name);
     }
 }

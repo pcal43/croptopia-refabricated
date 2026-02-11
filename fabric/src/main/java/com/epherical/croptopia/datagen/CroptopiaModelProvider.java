@@ -21,7 +21,7 @@ import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.renderer.item.BlockModelWrapper;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.item.ItemModels;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -82,7 +82,7 @@ public class CroptopiaModelProvider extends FabricModelProvider {
                     } else if (value instanceof TreeCrop treeCrop) {
                         generator.generateFlatItem(treeCrop.asItem(), ModelTemplates.FLAT_ITEM);
                         // the sapling items reuse the block textures, so we have to:
-                        final ResourceLocation saplingModel = ModelTemplates.FLAT_ITEM.create(
+                        final Identifier saplingModel = ModelTemplates.FLAT_ITEM.create(
                                 ModelLocationUtils.getModelLocation(treeCrop.getSaplingItem()),
                                 TextureMapping.layer0(TextureMapping.getBlockTexture(treeCrop.getSaplingBlock())), generator.modelOutput
                         );
@@ -99,7 +99,7 @@ public class CroptopiaModelProvider extends FabricModelProvider {
      * For items that reuse the block textures.
      */
     private static void generateFlatItemWithBlockTexture(ItemModelGenerators generator, Item item, Block block) {
-        final ResourceLocation saplingModel = ModelTemplates.FLAT_ITEM.create(
+        final Identifier saplingModel = ModelTemplates.FLAT_ITEM.create(
                 ModelLocationUtils.getModelLocation(item),
                 TextureMapping.layer0(TextureMapping.getBlockTexture(block)), generator.modelOutput
         );

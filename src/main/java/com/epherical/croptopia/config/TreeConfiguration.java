@@ -6,7 +6,7 @@ import com.epherical.epherolib.libs.org.spongepowered.configurate.serialize.Type
 import com.google.common.collect.SetMultimap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
@@ -52,10 +52,10 @@ public class TreeConfiguration {
         @Override
         public TreeConfiguration deserialize(Type type, ConfigurationNode node) throws SerializationException {
             ResourceKey<PlacedFeature> key = ResourceKey.create(Registries.PLACED_FEATURE, createIdentifier(node.node(KEY_FEATURE_NAME).getString()));
-            List<ResourceLocation> ids = node.node(KEY_ACCEPTABLE_BIOMES).getList(ResourceLocation.class);
+            List<Identifier> ids = node.node(KEY_ACCEPTABLE_BIOMES).getList(Identifier.class);
             List<ResourceKey<Biome>> biomeKeys = new ArrayList<>();
             if (ids != null) {
-                for (ResourceLocation id : ids) {
+                for (Identifier id : ids) {
                     biomeKeys.add(ResourceKey.create(Registries.BIOME, id));
                 }
             }
@@ -71,11 +71,11 @@ public class TreeConfiguration {
             }
 
             node.node(KEY_FEATURE_NAME).set(obj.featureKey);
-            List<ResourceLocation> identifiers = new ArrayList<>();
+            List<Identifier> identifiers = new ArrayList<>();
             for (ResourceKey<Biome> registryKey : obj.treesAllowedInBiome) {
-                identifiers.add(registryKey.location());
+                identifiers.add(registryKey.identifier());
             }
-            node.node(KEY_ACCEPTABLE_BIOMES).setList(ResourceLocation.class, identifiers);
+            node.node(KEY_ACCEPTABLE_BIOMES).setList(Identifier.class, identifiers);
         }
     }
 

@@ -15,6 +15,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.commands.SetBlockCommand;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.Nullable;
@@ -27,7 +28,7 @@ public class SetupCommand {
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext commandBuildContext) {
         dispatcher.register((Commands.literal("croptest").requires((serverCommandSource) -> {
-            return serverCommandSource.hasPermission(2);
+            return serverCommandSource.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER);
         })).then(Commands.argument("pos", BlockPosArgument.blockPos()).then((((Commands.argument("block", BlockStateArgument.block(commandBuildContext)).executes((commandContext) -> {
             return execute(commandContext.getSource(), BlockPosArgument.getLoadedBlockPos(commandContext, "pos"), BlockStateArgument.getBlock(commandContext, "block"), SetBlockCommand.Mode.REPLACE, null);
         })).then(Commands.literal("destroy").executes((commandContext) -> {

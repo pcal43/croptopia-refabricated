@@ -7,7 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -48,7 +48,7 @@ public class AdditionalTableModifier extends LootModifier {
         super(conditionsIn);
         this.referChance = chanceToRefer;
         this.tableID = tableID;
-        ResourceKey<LootTable> croptopia = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("croptopia", "gameplay/fishing/fish"));
+        ResourceKey<LootTable> croptopia = ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("croptopia", "gameplay/fishing/fish"));
         this.reference = (NestedLootTable) NestedLootTable.lootTableReference(croptopia).build();
     }
 

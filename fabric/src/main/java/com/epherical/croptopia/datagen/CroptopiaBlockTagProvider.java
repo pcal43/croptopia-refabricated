@@ -9,12 +9,12 @@ import net.minecraft.tags.BlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 
 import net.minecraft.tags.TagBuilder;
@@ -43,11 +43,11 @@ public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvide
     protected void generateSaplings() {
         TagBuilder saplings = this.getOrCreateRawBuilder(BlockTags.SAPLINGS);
         for (TreeCrop crop : TreeCrop.copy()) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
             if (id != null) saplings.add(TagEntry.element(id));
         }
         for (Tree crop : Tree.copy()) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.getSaplingBlock());
             if (id != null) saplings.add(TagEntry.element(id));
         }
     }
@@ -56,10 +56,10 @@ public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvide
         for (Tree crop : Tree.copy()) {
             // add different log types to log tag of this crop
             TagBuilder treeLogs = this.getOrCreateRawBuilder(crop.getLogBlockTag());
-            ResourceLocation log = BuiltInRegistries.BLOCK.getKey(crop.getLog());
-            ResourceLocation sLog = BuiltInRegistries.BLOCK.getKey(crop.getStrippedLog());
-            ResourceLocation wood = BuiltInRegistries.BLOCK.getKey(crop.getWood());
-            ResourceLocation sWood = BuiltInRegistries.BLOCK.getKey(crop.getStrippedWood());
+            Identifier log = BuiltInRegistries.BLOCK.getKey(crop.getLog());
+            Identifier sLog = BuiltInRegistries.BLOCK.getKey(crop.getStrippedLog());
+            Identifier wood = BuiltInRegistries.BLOCK.getKey(crop.getWood());
+            Identifier sWood = BuiltInRegistries.BLOCK.getKey(crop.getStrippedWood());
             if (log != null) treeLogs.add(TagEntry.element(log));
             if (sLog != null) treeLogs.add(TagEntry.element(sLog));
             if (wood != null) treeLogs.add(TagEntry.element(wood));
@@ -75,14 +75,14 @@ public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvide
         TagBuilder leaves = this.getOrCreateRawBuilder(BlockTags.LEAVES);
         TagBuilder hoe = this.getOrCreateRawBuilder(BlockTags.MINEABLE_WITH_HOE);
         for (TreeCrop crop : TreeCrop.TREE_CROPS) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
             if (id != null) {
                 leaves.add(TagEntry.element(id));
                 hoe.add(TagEntry.element(id));
             }
         }
         for (Tree crop : Tree.copy()) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.getLeaves());
             if (id != null) {
                 leaves.add(TagEntry.element(id));
                 hoe.add(TagEntry.element(id));
@@ -93,11 +93,11 @@ public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvide
     protected void generateCrops() {
         TagBuilder crops = this.getOrCreateRawBuilder(BlockTags.CROPS);
         for (FarmlandCrop crop : FarmlandCrop.copy()) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
             if (id != null) crops.add(TagEntry.element(id));
         }
         for (TreeCrop crop : TreeCrop.copy()) {
-            ResourceLocation id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
+            Identifier id = BuiltInRegistries.BLOCK.getKey(crop.asBlock());
             if (id != null) crops.add(TagEntry.element(id));
         }
     }
@@ -107,7 +107,7 @@ public class CroptopiaBlockTagProvider extends FabricTagProvider.BlockTagProvide
         TagBuilder azalea = this.getOrCreateRawBuilder(BlockTags.AZALEA_ROOT_REPLACEABLE);
         TagBuilder drip = this.getOrCreateRawBuilder(BlockTags.DRIPSTONE_REPLACEABLE);
         TagBuilder enderman = this.getOrCreateRawBuilder(BlockTags.ENDERMAN_HOLDABLE);
-        ResourceLocation saltOre = BuiltInRegistries.BLOCK.getKey(Content.SALT_ORE_BLOCK);
+        Identifier saltOre = BuiltInRegistries.BLOCK.getKey(Content.SALT_ORE_BLOCK);
         if (saltOre != null) {
             shovel.add(TagEntry.element(saltOre));
             azalea.add(TagEntry.element(saltOre));

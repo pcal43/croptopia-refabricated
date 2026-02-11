@@ -186,7 +186,7 @@ public class TreeCrop implements ItemConvertibleWithPlural, BlockConvertible {
     }
 
     private static TreeGrower createTree(ResourceKey<ConfiguredFeature<?, ?>> key) {
-        return new TreeGrower(key.location().toString(), Optional.empty(), Optional.of(key), Optional.empty());
+        return new TreeGrower(key.identifier().toString(), Optional.empty(), Optional.of(key), Optional.empty());
     }
 
     public static List<TreeCrop> copy() {
