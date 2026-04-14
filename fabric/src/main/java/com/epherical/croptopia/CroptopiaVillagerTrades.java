@@ -1,6 +1,6 @@
 package com.epherical.croptopia;
 
-import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
 import net.minecraft.world.item.Item;
 
 import java.util.List;

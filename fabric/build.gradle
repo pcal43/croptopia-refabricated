@@ -1,7 +1,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'fabric-loom' version '1.16-SNAPSHOT'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id "com.modrinth.minotaur" version "2.8.7"
     id "com.matthewprenger.cursegradle" version "1.4.0"
@@ -20,7 +20,9 @@ repositories {
     }
 }
 
-archivesBaseName = archives_base_name
+base {
+    archivesName = project.archives_base_name
+}
 
 configurations {
     shade
@@ -115,7 +117,7 @@ processResources {
         // is sort of understandable, but in our case, given the temporary nature of this codebase, it seems like
         // a reasonable thing to want to do.  This is a little fragile, and it only works because we do runData as a
         // development operation, not as part of the release build.
-        def isDatagenBuild = gradle.startParameter.taskNames.contains(":fabric:runData") || gradle.startParameter.taskNames.contains("runData")
+        def isDatagenBuild = gradle.startParameter.taskNames.contains(":fabric:runData") || gradle.startParameter.taskNames.contains("runData") || gradle.startParameter.taskNames.contains(":fabric:runDatagen") || gradle.startParameter.taskNames.contains("runDatagen")
         templateProperties.mod_id = isDatagenBuild ? "croptopia" : "croptopia-refabricated"
         expand(templateProperties)
         duplicatesStrategy = DuplicatesStrategy.INCLUDE

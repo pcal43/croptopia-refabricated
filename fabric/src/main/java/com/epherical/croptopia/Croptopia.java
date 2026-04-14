@@ -26,7 +26,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -52,7 +52,7 @@ public class Croptopia implements ModInitializer {
             .title(Component.translatable("itemGroup.croptopia"))
             .displayItems((featureFlagSet, output) ->
                     BuiltInRegistries.ITEM.entrySet().stream()
-                            .filter(entry -> entry.getKey().location().getNamespace().equals(MOD_ID))
+                            .filter(entry -> entry.getKey().identifier().getNamespace().equals(MOD_ID))
                             .sorted(Comparator.comparing(entry -> BuiltInRegistries.ITEM.getId(entry.getValue())))
                             .forEach(entry -> output.accept(entry.getValue())))
             .icon(() -> new ItemStack(Content.COFFEE))
@@ -63,13 +63,13 @@ public class Croptopia implements ModInitializer {
     public void onInitialize() {
         mod = new CroptopiaMod(new FabricAdapter(), new CroptopiaConfig(HoconConfigurationLoader.builder(), "croptopia_v3.conf"));
 
-        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(MOD_ID, "croptopia"), CROPTOPIA_ITEM_GROUP);
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(MOD_ID, "croptopia"), CROPTOPIA_ITEM_GROUP);
 
 
 
         Content.registerBlocks((id, fn) -> Registry.register(BuiltInRegistries.BLOCK, id, fn.apply(id)));
         mod.platform().registerFlammableBlocks();
-        final ResourceLocation guideBookId = CroptopiaMod.createIdentifier(ItemNamesV2.GUIDE);
+        final Identifier guideBookId = CroptopiaMod.createIdentifier(ItemNamesV2.GUIDE);
         Content.GUIDE = new GuideBookItem(createGroup(guideBookId));
         Registry.register(BuiltInRegistries.ITEM, guideBookId, Content.GUIDE);
 
@@ -123,8 +123,8 @@ public class Croptopia implements ModInitializer {
         modifyVillagers();
     }
 
-    public static ResourceLocation createIdentifier(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    public static Identifier createIdentifier(String name) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, name);
     }
 
     private void modifyAxeBlockStripping() {

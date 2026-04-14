@@ -1,6 +1,6 @@
 package com.epherical.croptopia.util;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public class RegistryDelay<E extends T, T> {
 
     private final String modId;
     private final List<Consumer<RegisterFunction<E>>> entries = new ArrayList<>();
-    private final Map<ResourceLocation, Supplier<E>> manipulations = new HashMap<>();
+    private final Map<Identifier, Supplier<E>> manipulations = new HashMap<>();
 
     public RegistryDelay(String modId) {
         this.modId = modId;
@@ -28,11 +28,11 @@ public class RegistryDelay<E extends T, T> {
         return entries;
     }
 
-    public void addOverride(ResourceLocation location, Supplier<E> newValue) {
+    public void addOverride(Identifier location, Supplier<E> newValue) {
         this.manipulations.put(location, newValue);
     }
 
-    public Map<ResourceLocation, Supplier<E>> getManipulations() {
+    public Map<Identifier, Supplier<E>> getManipulations() {
         return manipulations;
     }
 

@@ -32,7 +32,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.animal.Parrot;
@@ -200,7 +200,7 @@ public class CroptopiaForge {
                                         .sorted(Comparator.comparing(entry -> BuiltInRegistries.ITEM.getId(entry.getValue())))
                                         .forEach(entry -> output.accept(entry.getValue())))
                         .icon(() -> new ItemStack(Content.COFFEE)).build();
-                Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ResourceLocation.fromNamespaceAndPath(MOD_ID, "croptopia"), CROPTOPIA_ITEM_GROUP);
+                Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(MOD_ID, "croptopia"), CROPTOPIA_ITEM_GROUP);
                 Content.GUIDE = new GuideBookItem(createGroup());
                 event.register(Registries.ITEM, createIdentifier(ItemNamesV2.GUIDE), () -> Content.GUIDE);
 
@@ -236,8 +236,8 @@ public class CroptopiaForge {
         }
     }
 
-    public static ResourceLocation createIdentifier(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MiscNames.MOD_ID, name);
+    public static Identifier createIdentifier(String name) {
+        return Identifier.fromNamespaceAndPath(MiscNames.MOD_ID, name);
     }
 
     private static void modifyVillagerFoodItems() {

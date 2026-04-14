@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -28,7 +28,7 @@ public class CropLootTableModifier {
 
     public static void init() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            ResourceLocation id = key.location();
+            Identifier id = key.identifier();
             if (id.getNamespace().equalsIgnoreCase("minecraft")) {
                 String path = id.getPath();
                 switch (path) {
@@ -44,7 +44,7 @@ public class CropLootTableModifier {
                             LOGGER.warn("Can not inject into gameplay/fishing/fish as it is empty");
                         } else {
                             LootPool.Builder builder = FabricLootPoolBuilder.copyOf(pools.get(0));
-                            ResourceKey<LootTable> croptopia = ResourceKey.create(Registries.LOOT_TABLE, ResourceLocation.fromNamespaceAndPath("croptopia", "gameplay/fishing/fish"));
+                            ResourceKey<LootTable> croptopia = ResourceKey.create(Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("croptopia", "gameplay/fishing/fish"));
                             builder.add(NestedLootTable.lootTableReference(croptopia)
                                     .setWeight(30));
                             pools1.add(builder.build());

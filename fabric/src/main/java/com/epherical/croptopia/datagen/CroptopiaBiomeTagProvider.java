@@ -83,7 +83,7 @@ public class CroptopiaBiomeTagProvider extends TagsProvider<Biome> {
                 Biome.BiomeCategory category = Biome.getBiomeCategory(biomeHolder);
                 if (biomeTagHolding.biomeCategory.contains(category)) {
                     biomeHolder.unwrapKey().ifPresent(biomeResourceKey -> {
-                        if (biomeResourceKey.location().getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+                        if (biomeResourceKey.location().getNamespace().equals(Identifier.DEFAULT_NAMESPACE)) {
                             this.tag(biomeTagHolding.biomeTag).add(biomeHolder.value());
                         } else {
                             this.tag(biomeTagHolding.biomeTag).addOptional(biomeResourceKey.location());

@@ -9,7 +9,7 @@ public class LootTableModification {
 
     @SubscribeEvent
     public void onLootTableLoad(LootTableLoadEvent event) {
-        /*ResourceLocation location = event.getName();
+        /*Identifier location = event.getName();
         if (location != null && location.getNamespace().equals("minecraft")) {
             String path = location.getPath();
             switch (path) {
