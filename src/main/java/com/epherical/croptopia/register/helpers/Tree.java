@@ -220,7 +220,7 @@ public class Tree implements ItemConvertibleWithPlural, BlockConvertible {
     }
 
     private static TreeGrower createTree(ResourceKey<ConfiguredFeature<?, ?>> key) {
-        return new TreeGrower(key.location().toString(), Optional.empty(), Optional.of(key), Optional.empty());
+        return new TreeGrower(key.identifier().toString(), Optional.empty(), Optional.of(key), Optional.empty());
     }
 
     public static ConfiguredFeature<TreeConfiguration, ?> createBarkGen(int i, int j, int k, Block log, Block leaves) {

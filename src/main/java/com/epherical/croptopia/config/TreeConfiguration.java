@@ -73,7 +73,7 @@ public class TreeConfiguration {
             node.node(KEY_FEATURE_NAME).set(obj.featureKey);
             List<Identifier> identifiers = new ArrayList<>();
             for (ResourceKey<Biome> registryKey : obj.treesAllowedInBiome) {
-                identifiers.add(registryKey.location());
+                identifiers.add(registryKey.identifier());
             }
             node.node(KEY_ACCEPTABLE_BIOMES).setList(Identifier.class, identifiers);
         }
