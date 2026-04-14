@@ -11,7 +11,7 @@ import com.epherical.croptopia.util.RegisterFunction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -90,8 +90,8 @@ public class Tree implements ItemConvertibleWithPlural, BlockConvertible {
         //strippedWood = new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).ignitedByLava().sound(SoundType.WOOD).strength(2.0F));
         // create the tags (will be filled by datagen)
         String tagName = name + "_logs";
-        logItemTag = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MiscNames.MOD_ID, tagName));
-        logBlockTag = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MiscNames.MOD_ID, tagName));
+        logItemTag = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MiscNames.MOD_ID, tagName));
+        logBlockTag = TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MiscNames.MOD_ID, tagName));
         // left is leaves and saplings
         //leaves = createRegularLeavesBlock();
         //saplingBlock = new CroptopiaSaplingBlock(new CroptopiaSaplingGenerator(() -> configuredFeatureKey), createSaplingSettings().ignitedByLava());

@@ -3,8 +3,8 @@ package com.epherical.croptopia.config;
 import com.epherical.epherolib.libs.org.spongepowered.configurate.ConfigurationNode;
 import com.epherical.epherolib.libs.org.spongepowered.configurate.serialize.SerializationException;
 import com.epherical.epherolib.libs.org.spongepowered.configurate.serialize.TypeSerializer;
-import net.minecraft.ResourceLocationException;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.IdentifierException;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Serializes an {@link ResourceLocation} to a configuration object.
+ * Serializes an {@link Identifier} to a configuration object.
  *
  * <p>When identifiers are output, they are given in the canonical
  * string format.
@@ -28,22 +28,22 @@ import java.util.List;
  *     format, where the default namespace is <pre>minecraft</pre></li>
  * </ul>
  */
-public final class IdentifierSerializer implements TypeSerializer<ResourceLocation> {
+public final class IdentifierSerializer implements TypeSerializer<Identifier> {
 
     //private static final String NAMESPACE_MINECRAFT = "minecraft";
     public static final IdentifierSerializer INSTANCE = new IdentifierSerializer();
 
     @Override
-    public ResourceLocation deserialize(final @NotNull Type type, final @NotNull ConfigurationNode value) throws SerializationException {
+    public Identifier deserialize(final @NotNull Type type, final @NotNull ConfigurationNode value) throws SerializationException {
         return fromNode(value);
     }
 
     @Override
-    public void serialize(final @NotNull Type type, final @Nullable ResourceLocation obj, final @NotNull ConfigurationNode value) {
+    public void serialize(final @NotNull Type type, final @Nullable Identifier obj, final @NotNull ConfigurationNode value) {
         toNode(obj, value);
     }
 
-    static ResourceLocation fromNode(final ConfigurationNode node) throws SerializationException {
+    static Identifier fromNode(final ConfigurationNode node) throws SerializationException {
         if (node.virtual()) {
             return null;
         }
@@ -72,22 +72,22 @@ public final class IdentifierSerializer implements TypeSerializer<ResourceLocati
             if (val == null) {
                 throw listAcceptedFormats();
             }
-            return ResourceLocation.parse(val);
+            return Identifier.parse(val);
         }
     }
 
-    static ResourceLocation createIdentifier(final String key, final String value) throws SerializationException {
+    static Identifier createIdentifier(final String key, final String value) throws SerializationException {
         try {
-            return ResourceLocation.fromNamespaceAndPath(key, value);
-        } catch (final ResourceLocationException ex) {
+            return Identifier.fromNamespaceAndPath(key, value);
+        } catch (final IdentifierException ex) {
             throw new SerializationException(ex);
         }
     }
 
-    static ResourceLocation createIdentifier(final String data) throws SerializationException {
+    static Identifier createIdentifier(final String data) throws SerializationException {
         try {
-            return ResourceLocation.parse(data);
-        } catch (final ResourceLocationException ex) {
+            return Identifier.parse(data);
+        } catch (final IdentifierException ex) {
             throw new SerializationException(ex.getMessage());
         }
     }
@@ -96,7 +96,7 @@ public final class IdentifierSerializer implements TypeSerializer<ResourceLocati
         return new SerializationException("The provided item must be in [<namespace>:]<path> format");
     }
 
-    static void toNode(final ResourceLocation ident, final ConfigurationNode node) {
+    static void toNode(final Identifier ident, final ConfigurationNode node) {
         if (ident == null) {
             node.raw(null);
         } else {

@@ -28,7 +28,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.registries.VanillaRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -649,11 +649,11 @@ public class CroptopiaRecipeProvider extends FabricRecipeProvider {
     }
 
     private TagKey<Item> croptopia(String name) {
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MiscNames.MOD_ID, name));
+        return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MiscNames.MOD_ID, name));
     }
 
     public static TagKey<Item> independentTag(String name) {
         // For Fabric, use the 'c' namespace directly instead of ${dependent} placeholder
-        return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", name));
+        return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", name));
     }
 }
