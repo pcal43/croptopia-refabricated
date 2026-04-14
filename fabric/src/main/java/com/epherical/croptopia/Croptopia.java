@@ -52,7 +52,7 @@ public class Croptopia implements ModInitializer {
             .title(Component.translatable("itemGroup.croptopia"))
             .displayItems((featureFlagSet, output) ->
                     BuiltInRegistries.ITEM.entrySet().stream()
-                            .filter(entry -> entry.getKey().location().getNamespace().equals(MOD_ID))
+                            .filter(entry -> entry.getKey().identifier().getNamespace().equals(MOD_ID))
                             .sorted(Comparator.comparing(entry -> BuiltInRegistries.ITEM.getId(entry.getValue())))
                             .forEach(entry -> output.accept(entry.getValue())))
             .icon(() -> new ItemStack(Content.COFFEE))

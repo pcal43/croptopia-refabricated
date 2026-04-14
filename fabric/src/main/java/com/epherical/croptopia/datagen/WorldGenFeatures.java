@@ -221,7 +221,7 @@ public class WorldGenFeatures {
     }
 
     public static Holder<PlacedFeature> register(ResourceKey<PlacedFeature> key, ConfiguredFeature<?, ?> holder, List<PlacementModifier> modifiers) {
-        keyMap.put(key.location().getPath(), key);
+        keyMap.put(key.identifier().getPath(), key);
         Holder<PlacedFeature> direct = Holder.direct(new PlacedFeature(Holder.direct(holder), modifiers));
         datagenModifierLists.put(key, modifiers);
         return direct;

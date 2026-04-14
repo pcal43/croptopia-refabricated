@@ -28,7 +28,7 @@ public class CropLootTableModifier {
 
     public static void init() {
         LootTableEvents.MODIFY.register((key, tableBuilder, source) -> {
-            Identifier id = key.location();
+            Identifier id = key.identifier();
             if (id.getNamespace().equalsIgnoreCase("minecraft")) {
                 String path = id.getPath();
                 switch (path) {
