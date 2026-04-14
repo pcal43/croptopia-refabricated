@@ -17,7 +17,6 @@ import com.epherical.croptopia.util.ItemConvertibleWithPlural;
 import com.google.common.collect.ImmutableMap;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.Util;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -74,7 +73,7 @@ public class CroptopiaRecipeProvider extends FabricRecipeProvider {
     }
 
     public CroptopiaRecipeProvider(FabricDataOutput output) {
-        super(output, CompletableFuture.supplyAsync(VanillaRegistries::createLookup, Util.backgroundExecutor()));
+        super(output, CompletableFuture.completedFuture(VanillaRegistries.createLookup()));
     }
 
 
